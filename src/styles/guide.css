@@ -1,0 +1,90 @@
+h1 {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+h2 {
+  font-size: 20px; font-weight: bold; display: inline-block; 
+  background: #222; color: #fff; padding: 10px;
+  margin-bottom: 15px;
+}
+.area {padding:15px; border: 5px solid black; margin: 20px;}
+span {
+  font-weight: bold;
+}
+
+.font1 {font-family: var(--font-galmuri);}
+.font2 {font-family: var(--font-noto);}
+.font3 {font-family: var(--font-gaegu);}
+.font4 {font-family: var(--font-neo);}
+.font5 {font-family: var(--font-bit);}
+.font6 {font-family: var(--font-peace);}
+.font7 {font-family: var(--font-gangwon);}
+.font8 {font-family: var(--font-jua);}
+.font9 {font-family: var(--font-yangjin);}
+.font10 {font-family: var(--font-pre);}
+.font11 {font-family: var(--font-hs);}
+.font12 {font-family: var(--font-score);}
+.font13 {font-family: var(--font-gmarket);}
+
+.silver {background: var(--silver);}
+.gray {background: var(--gray);}
+.black {background: var(--black);}
+.yellow {background: var(--yellow);}
+.night {background: var(--night);}
+.carrot {background: var(--carrot);}
+.green {background: var(--green);}
+.pink {background: var(--pink);}
+.pale {background: var(--pale);}
+
+.flex {display: flex;}
+.box {width: 100px; height: 100px;}
+.w2 {width: calc(100%/2);}
+
+.mt-large {margin-top: var(--gap-large)}
+.mt-big {margin-top: var(--gap-big)}
+.mt-md {margin-top: var(--gap-md)}
+.mt-sm {margin-top: var(--gap-sm)}
+
+.mr-large {margin-right: var(--gap-large)}
+.mr-big {margin-right: var(--gap-big)}
+.mr-md {margin-right: var(--gap-md)}
+.mr-sm {margin-right: var(--gap-sm)}
+
+.mb-large {margin-bottom: var(--gap-large)}
+.mb-big {margin-bottom: var(--gap-big)}
+.mb-md {margin-bottom: var(--gap-md)}
+.mb-sm {margin-bottom: var(--gap-sm)}
+
+.ml-large {margin-left: var(--gap-large)}
+.ml-big {margin-left: var(--gap-big)}
+.ml-md {margin-left: var(--gap-md)}
+.ml-sm {margin-left: var(--gap-sm)}
+
+
+/* animation */
+.eff-pulse,
+.eff-fill:hover,
+.eff-raise {
+  transition: var(--trans);
+}
+
+.eff-pulse:hover {
+  animation: effPulse 1s;
+  box-shadow: 0 0 0 2em transparent;
+  transition: var(--trans);
+}
+.eff-fill:hover{
+  box-shadow: inset 0 0 0 10em var(--hoverColor);
+  transition: var(--trans);
+}
+.eff-raise:hover{
+  box-shadow: 0 0.5em 0.5em -0.4em var(--hoverColor);
+  transform: translateY(-0.25em);
+  transition: var(--trans);
+}
+@keyframes effPulse {
+  0% { box-shadow: 0 0 0 0 var(--hoverColor); }
+}
+
+
+
