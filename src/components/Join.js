@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-
+// 여진 브랜치 수정해봄
 const privateData = () => {
 
     return (
