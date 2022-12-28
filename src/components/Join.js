@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 // 여진 브랜치 수정해봄
+// 여진 브랜치 수정해봄22222
 const privateData = () => {
 
     return (
