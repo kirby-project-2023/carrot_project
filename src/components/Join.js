@@ -1,8 +1,51 @@
-import React from 'react'
+import React, { Fragment } from 'react'
+
+const privateData = () => {
+
+    return (
+        <div>
+            <div>
+                <input type='checkbox' className='total'></input>
+            </div>
+            <div>
+                <input type='checkbox' className='total'></input>
+            </div>
+            <div>
+                <input type='checkbox' className='total'></input>
+            </div>
+            <div>
+                <input type='checkbox' className='total'></input>
+            </div>
+            <div>
+                <input type='checkbox' className='total'></input>
+            </div>
+            <div>
+                <input type='checkbox' className='total'></input>
+            </div>
+        </div>
+    )
+}
 
 const Join = () => {
+
   return (
-    <div>Join</div>
+   <Fragment>
+    <form action='' method='get'>
+        <div>
+            <label>id</label>
+            <input type='text' required></input>
+        </div>
+        <div>
+            <label>password</label>
+            <input type='password' required></input>
+        </div>
+        <div>
+            <label>password 확인하기</label>
+            <input type='password' required></input>
+        </div>
+        <button>가입하기</button>
+    </form>
+   </Fragment>
   )
 }
 
