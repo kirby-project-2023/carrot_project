@@ -1,19 +1,8 @@
 @import url(fonts.css);
 :root {
   /* font */
-  --font-galmuri: 'Galmuri9';
-  --font-noto:    'Noto Sans KR', sans-serif;
-  --font-gaegu:   'Gaegu', cursive;
-  --font-neo:     'NanumSquareNeo-Variable';
-  --font-bit:     'bitbit';
   --font-peace:   'PyeongChangPeace-Bold';
   --font-gangwon: 'GangwonEdu_OTFBoldA';
-  --font-jua:     'BMJUA';
-  --font-yangjin: '양진체';
-  --font-pre:     'Pretendard-Regular';
-  --font-hs:      'HS-Regular';
-  --font-score:   'S-CoreDream';
-  --font-gmarket: 'GmarketSansMedium';
 
   /* gap */
   --gap-large: 40px;
