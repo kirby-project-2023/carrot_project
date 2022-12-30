@@ -1,4 +1,46 @@
 import React, { Fragment } from 'react'
+import styled from 'styled-components';
+
+const JoinForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+`;
+const JoinIp = styled.input`
+    width: var(--ip-big-w);
+    height: var(--ip-big-h);
+    border: 1px solid var(--maincolor);
+    border-radius: var(--bd-rd-sm);
+    padding: 0 var(--gap-sm);
+    transition: var(--trans);
+    margin-bottom: var(--gap-sm);
+    &:focus{
+        box-shadow: var(--shadow);
+        transition: var(--trans);
+    }
+`;
+const JoinLabel = styled.label`
+    font-size: var(fz-big);
+    font-weight: bold;
+    text-transform: uppercase;
+    display: block;
+`;
+const JoinBtn = styled.button`
+    width: var(--ip-big-w);
+    height: var(--ip-big-h);
+    text-align: center;
+    background: var(--maincolor);
+    border-radius: var(--bd-rd-sm);
+    color: #fff;
+    cursor: pointer;
+    transition: var(--trans);
+    &:hover {
+        box-shadow: var(--shadow);
+        transition: var(--trans);
+    }
+`;
 
 const privateData = () => {
     const arr = []
@@ -27,24 +69,23 @@ const privateData = () => {
 }
 
 const Join = () => {
-
     return (
         <Fragment>
-            <form action='' method='get'>
+            <JoinForm action='' method='get'>
                 <div>
-                    <label>id</label>
-                    <input type='text' required></input>
+                    <JoinLabel>ID</JoinLabel>
+                    <JoinIp type='text' />
                 </div>
                 <div>
-                    <label>password</label>
-                    <input type='password' required></input>
+                    <JoinLabel>PASSWORD</JoinLabel>
+                    <JoinIp type='password' />
                 </div>
                 <div>
-                    <label>password 확인하기</label>
-                    <input type='password' required></input>
+                    <JoinLabel>PASSWORD 확인</JoinLabel>
+                    <JoinIp type='password' />
                 </div>
-                <button>가입하기</button>
-            </form>
+                <JoinBtn>가입하기</JoinBtn>
+            </JoinForm>
         </Fragment>
     )
 }
