@@ -5,10 +5,15 @@ import { Fragment } from 'react';
 import Guide from './components/Guide'
 import Index from './components/Index';
 
+import Index from './components/Index'
+import Join from './components/Join'
+
 function App() {
   return (
     <Fragment>
-      <Index></Index>
+      <GlobalStyle /> 
+      <Index /> 
+      <Join/>
     </Fragment>
   );
 }
