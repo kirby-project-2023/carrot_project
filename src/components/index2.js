@@ -1,9 +1,9 @@
 import React from 'react'
 
-function index2() {
+function Index2() {
   return (
-    <div>index2</div>
+    <div>Index2</div>
   )
 }
 
-export default index2
+export default Index2

@@ -8,15 +8,29 @@ const Button = styled.button`
     border-radius: var(--bd-rd-big);
     border: none;
 `
+//사이즈 크기를 정하자
+const Container = styled.div`
+    width: 500px;
+    height: 500px;
+    background-color: var(--night);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+`
 
-function index() {
+
+function Index() {
   return (
     <>
-    <div>index</div>
-    <Button className='eff-fill'>로그인</Button>
-    <Button className='eff-fill'>회원가입</Button>
+      <div>
+        <Container>
+          <Button className='eff-fill'>로그인</Button>
+          <Button className='eff-fill'>회원가입</Button>
+        </Container>
+      </div>
     </>
   )
 }
 
-export default index
+export default Index
