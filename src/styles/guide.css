@@ -1,4 +1,4 @@
-h1 {
+/* h1 {
   font-size: 24px;
   margin-bottom: 5px;
 }
@@ -12,19 +12,10 @@ span {
   font-weight: bold;
 }
 
-.font1 {font-family: var(--font-galmuri);}
-.font2 {font-family: var(--font-noto);}
-.font3 {font-family: var(--font-gaegu);}
-.font4 {font-family: var(--font-neo);}
-.font5 {font-family: var(--font-bit);}
+
 .font6 {font-family: var(--font-peace);}
 .font7 {font-family: var(--font-gangwon);}
-.font8 {font-family: var(--font-jua);}
-.font9 {font-family: var(--font-yangjin);}
-.font10 {font-family: var(--font-pre);}
-.font11 {font-family: var(--font-hs);}
-.font12 {font-family: var(--font-score);}
-.font13 {font-family: var(--font-gmarket);}
+
 
 .silver {background: var(--silver);}
 .gray {background: var(--gray);}
@@ -61,7 +52,7 @@ span {
 .ml-sm {margin-left: var(--gap-sm)}
 
 
-/* animation */
+
 .eff-pulse,
 .eff-fill:hover,
 .eff-raise {
@@ -87,4 +78,4 @@ span {
 }
 
 
-
+ */
