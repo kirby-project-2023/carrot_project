@@ -4,12 +4,14 @@ import GlobalStyle from './styles/GlobalStyle';
 import { Fragment } from 'react';
 import Guide from './components/Guide'
 import Join from './components/Join';
+import Index from './components/Index'
 
 function App() {
   return (
     <Fragment>
       <GlobalStyle /> 
-      <Join />
+      <Index /> 
+      <Join/>
     </Fragment>
   );
 }
