@@ -26,6 +26,16 @@ const GlobalStyle = createGlobalStyle`
     'Noto Sans KR', 
     'Malgun Gothic', sans-serif;
   }
+  .wrap {
+    max-width: 768px;
+    width: 100%;
+    margin: 0 auto;
+    @media (max-width: 768px){
+      max-width: 100%;
+      padding: 0 var(--gap-md);
+      overflow-x: hidden;
+    }
+  }
   .fz-base {
     font-family: var(--font-gangwon);
   }
