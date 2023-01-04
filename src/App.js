@@ -3,12 +3,13 @@ import styled from 'styled-components';
 import GlobalStyle from './styles/GlobalStyle';
 import { Fragment } from 'react';
 import Guide from './components/Guide'
+import Join from './components/Join';
 
 function App() {
   return (
     <Fragment>
       <GlobalStyle /> 
-      <Guide/>
+      <Join />
     </Fragment>
   );
 }
