@@ -1,12 +1,39 @@
 import React, { Fragment } from 'react'
 import styled from 'styled-components';
 
+const ExampleBox = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--gap-sm);
+    max-width: 768px;
+    margin: 0 auto 100px;
+    @media (max-width: 768px){
+        width: 100%;
+        padding: 0 var(--gap-md);
+    }
+`;
+const ExampleP = styled.div`
+    font-size: 30px;
+    text-transform: uppercase;
+    @media (max-width: 768px){
+        background: var(--green);
+        color: #fff;
+    }
+`;
+
+
 const JoinForm = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+`;
+const JoinBox = styled.div`
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--gap-md);
 `;
 const JoinIp = styled.input`
     width: var(--ip-big-w);
@@ -15,17 +42,29 @@ const JoinIp = styled.input`
     border-radius: var(--bd-rd-sm);
     padding: 0 var(--gap-sm);
     transition: var(--trans);
-    margin-bottom: var(--gap-sm);
     &:focus{
         box-shadow: var(--shadow);
         transition: var(--trans);
     }
 `;
 const JoinLabel = styled.label`
-    font-size: var(fz-big);
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: var(--fz-md);
     font-weight: bold;
     text-transform: uppercase;
-    display: block;
+    pointer-events: none;
+    color: var(--gray);
+    background: #fff;
+    transition: var(--trans);
+    ${JoinIp}:focus ~ &,
+    ${JoinIp}:valid ~ & {
+        top: 0;
+        font-size: var(--fz-sm);
+        transition: var(--trans);
+    };
 `;
 const JoinBtn = styled.button`
     width: var(--ip-big-w);
@@ -71,21 +110,30 @@ const privateData = () => {
 const Join = () => {
     return (
         <Fragment>
-            <JoinForm action='' method='get'>
-                <div>
-                    <JoinLabel>ID</JoinLabel>
-                    <JoinIp type='text' />
-                </div>
-                <div>
-                    <JoinLabel>PASSWORD</JoinLabel>
-                    <JoinIp type='password' />
-                </div>
-                <div>
-                    <JoinLabel>PASSWORD 확인</JoinLabel>
-                    <JoinIp type='password' />
-                </div>
-                <JoinBtn>가입하기</JoinBtn>
-            </JoinForm>
+            <div className='wrap'>
+
+                <ExampleBox>
+                    <ExampleP>logo</ExampleP>
+                    <ExampleP>title</ExampleP>
+                    <ExampleP>mypage</ExampleP>
+                </ExampleBox>
+
+                <JoinForm action='' method='get'>
+                    <JoinBox>
+                        <JoinIp type='text' title='joinId' id='joinId' required />
+                        <JoinLabel for='joinId'>아이디</JoinLabel>
+                    </JoinBox>
+                    <JoinBox>
+                        <JoinIp type='password' title='joinPw' id='joinPw' required />
+                        <JoinLabel for='joinPw'>비밀번호</JoinLabel>
+                    </JoinBox>
+                    <JoinBox>
+                        <JoinIp type='password' title='joinPwConfirm' id='joinPwConfirm' required />
+                        <JoinLabel for='joinPwConfirm'>비밀번호 확인</JoinLabel>
+                    </JoinBox>
+                    <JoinBtn>가입하기</JoinBtn>
+                </JoinForm>
+            </div>
         </Fragment>
     )
 }
