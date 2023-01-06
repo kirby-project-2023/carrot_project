@@ -5,15 +5,20 @@ import { Fragment } from 'react';
 import Guide from './components/Guide'
 import Index from './components/Index'
 import Join from './components/Join'
+import Login from './components/Login';
 
 
 
 function App() {
+  {/*Login.js, Mypage.js에서 사용할 state -> mypage에 아이디 띄워야 해서 가져옴 */}
+  const [nickname, setNickname] = useState('');
+  
   return (
     <Fragment>
       <GlobalStyle /> 
       <Index /> 
       <Join/>
+      <Login setNickname={setNickname}/>
     </Fragment>
   );
 }
