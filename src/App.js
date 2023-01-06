@@ -2,14 +2,11 @@ import './styles/variable.css';
 import styled from 'styled-components';
 import GlobalStyle from './styles/GlobalStyle';
 import { Fragment, useState } from 'react';
-import Guide from './components/Guide'
 import Index from './components/Index'
 import Join from './components/Join'
 import userJson from './datas/userData.json'
 import dummyJson from './datas/dummyData.json'
 import Login from './components/Login';
-
-
 
 function App() {
   const [ userData, setUserData ] = useState(userJson)
