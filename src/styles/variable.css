@@ -5,9 +5,9 @@
   --font-gangwon: 'GangwonEdu_OTFBoldA';
 
   /* gap */
-  --gap-large: 40px;
-  --gap-big:   30px;
-  --gap-md:    20px;
+  --gap-large: 30px;
+  --gap-big:   20px;
+  --gap-md:    15px;
   --gap-sm:    10px;
 
   /* font-size */
