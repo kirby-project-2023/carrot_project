@@ -1,44 +1,51 @@
 @import url(fonts.css);
 :root {
-  /* font */
-  --font-peace:   'PyeongChangPeace-Bold';
-  --font-gangwon: 'GangwonEdu_OTFBoldA';
+  /* display */
+  --max-w-pc: 768px;
+  --max-w-mo: 375px;
 
+  /* input */
+  --ip-big-w: 200px;
+  --ip-big-h: 40px;
+  --ip-big-p: 0 10px;
+  
+  /* textarea */
+  --text-w: 400px;
+  --text-h: 300px;
+  
+  /* button */
+  --btn-big-w: 200px;
+  --btn-big-h: 40px;
+  --btn-sm-w: 95px;
+  --btn-sm-h: 40px;
+  
+  /* label */
+  --label-w: 150px;
+  
   /* gap */
   --gap-large: 30px;
   --gap-big:   20px;
   --gap-md:    15px;
   --gap-sm:    10px;
-
+  
+  /* font */
+  --font-peace:   'PyeongChangPeace-Bold';
+  --font-gangwon: 'GangwonEdu_OTFBoldA';
+  
   /* font-size */
   --fz-large: 30px;
   --fz-big: 20px;
   --fz-md: 16px;
   --fz-sm: 12px;
-
+  
   /* border-radius */
   --bd-rd-big: 10px;
   --bd-rd-sm: 8px;
 
-  /* form elements layout */
-  --ip-big-w: 200px;
-  --ip-big-h: 40px;
-  --ip-big-p: 0 10px;
-  
-  --text-w: 400px;
-  --text-h: 300px;
-
-  --btn-big-w: 200px;
-  --btn-big-h: 40px;
-  --btn-sm-w: 95px;
-  --btn-sm-h: 40px;
-
-  --label-w: 150px;
-
   /* animation */
   --trans: .4s;
   --hoverColor: #EF854A;
-
+  
   /* color */
   --maincolor: #EF854A;
   --black:  #000000;
@@ -51,7 +58,7 @@
   --yellow: #FBE15C;
   --carrot: #EF854A;
   --green:  #0aa146;
-
+  
   /* shadow */
   --shadow: rgba(99, 99, 99, 0.7) 0px 2px 8px 0px;
   --effect-sd: 0 0 0 2em transparent;
