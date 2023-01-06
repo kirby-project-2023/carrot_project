@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import styled from 'styled-components';
 
 // Private Check
@@ -60,6 +60,7 @@ const PrivateLabel = styled.label`
         opacity: 1;
     }
 `;
+
 const PrivateTextarea = styled.div`
     border: 1px solid var(--gray);
     width: var(--ip-big-w);
@@ -70,6 +71,7 @@ const PrivateTextarea = styled.div`
     line-height: 1.2;
     background: #fff;
 `;
+
 // Join Form
 const JoinForm = styled.form`
     display: flex;
@@ -135,7 +137,6 @@ const JoinBtn = styled.button`
 `;
 
 
-
 const PrivateData = () => {
     return (
         <PrivateWrap>
@@ -187,26 +188,38 @@ const PrivateData = () => {
     )
 }
 
-const Join = () => {
+const Join = ({ userData, setUserData }) => {
+    const [ userId, setUserID ] = useState('')
+    const [ userPassword, setUserPassword ] = useState('')
+    console.log(userData)
+
+    const handleUserData = () => {
+        const newUserData = [...userData, {
+            id: userId,
+            pw: userPassword
+        }]
+        setUserData(newUserData)
+    }
     return (
-        <div className='wrap'>
-            <JoinForm action='' method='get'>
-                <JoinBox>
-                    <JoinIp type='text' title='joinId' id='joinId' required />
-                    <JoinLabel for='joinId'>아이디</JoinLabel>
-                </JoinBox>
-                <JoinBox>
-                    <JoinIp type='password' title='joinPw' id='joinPw' required />
-                    <JoinLabel for='joinPw'>비밀번호</JoinLabel>
-                </JoinBox>
-                <JoinBox>
-                    <JoinIp type='password' title='joinPwConfirm' id='joinPwConfirm' required />
-                    <JoinLabel for='joinPwConfirm'>비밀번호 확인</JoinLabel>
-                </JoinBox>
-                <JoinBtn>가입하기</JoinBtn>
-            </JoinForm>
-            <PrivateData/>
-        </div>
+        <Fragment>
+            <div className='wrap'>
+                <JoinForm action='' method='get'>
+                    <JoinBox>
+                        <JoinIp type='text' title='joinId' id='joinId' onKeyUp={setUserID} required />
+                        <JoinLabel for='joinId'>아이디</JoinLabel>
+                    </JoinBox>
+                    <JoinBox>
+                        <JoinIp type='password' title='joinPw' id='joinPw' onKeyUp={setUserPassword} required />
+                        <JoinLabel for='joinPw'>비밀번호</JoinLabel>
+                    </JoinBox>
+                    <JoinBox>
+                        <JoinIp type='password' title='joinPwConfirm' id='joinPwConfirm' required />
+                        <JoinLabel for='joinPwConfirm'>비밀번호 확인</JoinLabel>
+                    </JoinBox>
+                    <JoinBtn onClick={handleUserData}>가입하기</JoinBtn>
+                </JoinForm>
+            </div>
+        </Fragment>
     )
 }
 
