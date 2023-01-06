@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import styled from 'styled-components';
 
 const ExampleBox = styled.div`
@@ -21,7 +21,6 @@ const ExampleP = styled.div`
         color: #fff;
     }
 `;
-
 
 const JoinForm = styled.form`
     display: flex;
@@ -107,7 +106,18 @@ const privateData = () => {
     )
 }
 
-const Join = () => {
+const Join = ({ userData, setUserData }) => {
+    const [ userId, setUserID ] = useState('')
+    const [ userPassword, setUserPassword ] = useState('')
+    console.log(userData)
+
+    const handleUserData = () => {
+        const newUserData = [...userData, {
+            id: userId,
+            pw: userPassword
+        }]
+        setUserData(newUserData)
+    }
     return (
         <Fragment>
             <div className='wrap'>
@@ -120,18 +130,18 @@ const Join = () => {
 
                 <JoinForm action='' method='get'>
                     <JoinBox>
-                        <JoinIp type='text' title='joinId' id='joinId' required />
+                        <JoinIp type='text' title='joinId' id='joinId' onKeyUp={setUserID} required />
                         <JoinLabel for='joinId'>아이디</JoinLabel>
                     </JoinBox>
                     <JoinBox>
-                        <JoinIp type='password' title='joinPw' id='joinPw' required />
+                        <JoinIp type='password' title='joinPw' id='joinPw' onKeyUp={setUserPassword} required />
                         <JoinLabel for='joinPw'>비밀번호</JoinLabel>
                     </JoinBox>
                     <JoinBox>
                         <JoinIp type='password' title='joinPwConfirm' id='joinPwConfirm' required />
                         <JoinLabel for='joinPwConfirm'>비밀번호 확인</JoinLabel>
                     </JoinBox>
-                    <JoinBtn>가입하기</JoinBtn>
+                    <JoinBtn onClick={handleUserData}>가입하기</JoinBtn>
                 </JoinForm>
             </div>
         </Fragment>
