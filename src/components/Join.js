@@ -1,4 +1,5 @@
-import React, { Fragment, useState } from 'react'
+import { clear } from '@testing-library/user-event/dist/clear';
+import React, { Fragment, useEffect, useState } from 'react'
 import styled from 'styled-components';
 
 // Private Check
@@ -189,34 +190,89 @@ const PrivateData = () => {
 }
 
 const Join = ({ userData, setUserData }) => {
-    const [ userId, setUserID ] = useState('')
-    const [ userPassword, setUserPassword ] = useState('')
-    console.log(userData)
-
-    const handleUserData = () => {
-        const newUserData = [...userData, {
-            id: userId,
-            pw: userPassword
-        }]
-        setUserData(newUserData)
+    const [ userInfo, setUserInfo ] = useState({
+        id: '',
+        pw: '',
+        pwConfirm: ''
+    })
+    const [ isIncorrect, setIsIncorrect ] = useState(false)
+    const handleIdInput = (key) => (event) => {
+        let user = {}
+        user = {
+            ...userInfo, 
+            [key]: event.target.value
+        }
+        setUserInfo(user)
     }
+
+    useEffect(() => {
+        passwordConfirm()
+    }, [ userInfo ])
+
+    const passwordConfirm = () => {
+        if (userInfo.pw !== userInfo.pwConfirm) {
+            // 비밀번호 틀렸다고 말해주기
+            setIsIncorrect(true)
+        } else {
+            setIsIncorrect(false)
+        }
+    }
+    
+    const handleUserData = (event) => {
+        event.preventDefault()
+        const { id ,pw } = userInfo
+        if (isIncorrect || checkUserData()) {
+        // 회원가입 반려
+            alert('중복된 Id 이거나 비밀번호가 유효하지 않습니다.')
+        }
+        else if (!checkUserData()) {
+            setUserData([
+                ...userData,
+                {
+                    id,
+                    pw
+                }
+            ])
+            initState()
+        }
+    }
+    // field 지정을 회원가입에서 해야하는지 확인하기 !
+
+    const initState = () => {
+        setUserInfo({
+            id: '',
+            pw: '',
+            pwConfirm: ''
+        })
+        setIsIncorrect(false)
+    }
+
+    const checkUserData = () => {
+        // user가 입력한 데이터 받아서
+        // 1. user ID 가 데이터에 중복 없는지
+        // 2. 입력한 password === passwordconfirm과 같은지
+        return userData.some(((user) => user.id === userInfo.id))
+    }
+
+    console.log(userData)
     return (
         <Fragment>
             <div className='wrap'>
-                <JoinForm action='' method='get'>
+                <JoinForm action='' method='get' onSubmit={handleUserData}>
                     <JoinBox>
-                        <JoinIp type='text' title='joinId' id='joinId' onKeyUp={setUserID} required />
+                        <JoinIp type='text' title='joinId' id='joinId' onChange={handleIdInput('id')} value={userInfo.id} required />
                         <JoinLabel for='joinId'>아이디</JoinLabel>
                     </JoinBox>
                     <JoinBox>
-                        <JoinIp type='password' title='joinPw' id='joinPw' onKeyUp={setUserPassword} required />
+                        <JoinIp type='password' title='joinPw' id='joinPw' onChange={handleIdInput('pw')} value={userInfo.pw} required />
                         <JoinLabel for='joinPw'>비밀번호</JoinLabel>
                     </JoinBox>
                     <JoinBox>
-                        <JoinIp type='password' title='joinPwConfirm' id='joinPwConfirm' required />
+                        <JoinIp type='password' title='joinPwConfirm' id='joinPwConfirm' onChange={handleIdInput('pwConfirm')} value={userInfo.pwConfirm} required />
                         <JoinLabel for='joinPwConfirm'>비밀번호 확인</JoinLabel>
                     </JoinBox>
-                    <JoinBtn onClick={handleUserData}>가입하기</JoinBtn>
+                    <JoinBox><div>{isIncorrect ? '비밀번호가 같지 않습니다.' : '' }</div></JoinBox>
+                    <JoinBtn type='submit'>가입하기</JoinBtn>
                 </JoinForm>
             </div>
         </Fragment>
