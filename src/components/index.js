@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Help from './Help'
+import { Link } from 'react-router-dom';
 
 const Button = styled.button`
     width: var(--btn-big-w);
@@ -11,7 +11,7 @@ const Button = styled.button`
 `
 
 const Container = styled.div`
-    width: 100%;
+    width: 500px;
     height: 500px;
     background-color: var(--night);
     display: flex;
@@ -19,15 +19,13 @@ const Container = styled.div`
     justify-items: center;
 `
 
-
-const Index = () => {
+function Index() {
   return (
     <>
-    <div className='wrap'>
+    <div>
         <Container>
-            <Button className='eff-fill'>로그인</Button>
-            <Button className='eff-fill'>회원가입</Button>
-            <Help/>
+            <Link to="/login"><Button className='eff-fill'>로그인</Button></Link>
+            <Link to="join"><Button className='eff-fill'>회원가입</Button></Link>
         </Container>
     </div>
     </>
