@@ -9,6 +9,7 @@ import dummyJson from './datas/dummyData.json'
 import Login from './components/Login';
 
 function App() {
+  // 여기 수정이 되어야 한다
   const [ userData, setUserData ] = useState(userJson)
   const [ dummyData, setDummyData ] = useState(dummyJson)
   
