@@ -1,19 +1,14 @@
 import React, { useState } from 'react'
-{/*import user 더미데이터 */ }
-{/*react-router-dom을 써야 하나? */ }
-import { Link, useHistory } from 'react-router-dom';
+// import userData from '../datas/userData.json'
+import { Link, useNavigate } from 'react-router-dom';
 
-const user = [{
-    id: 'aaa',
-    pw: '1234'
-}];
 
-const Login = () => {
+const Login = ({ setNickname, userData }) => {
     const [inputId, setInputId] = useState('');
     const [inputPw, setInputPw] = useState('');
     {/*버튼 누른 상태? */}
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const handleInputId = (event) => {
         setInputId(event.target.value);
@@ -31,9 +26,17 @@ const Login = () => {
         e.preventDefault();
         {/*inputId, inputPw -> 더미데이터 비교해서 있으면 마이페이지로 넘어가고
         아니면 알림창 띄우기*/}
-        const arr = user.filter(el => el.id === inputId && el.pw === inputPw);
+        const arr = userData.filter(el => el.id === inputId && el.pw === inputPw);
         if(arr.length === 1) {
-            history.push('/mypage');
+            navigate('/mypage');
+            setNickname(arr[0].field)
+            {/*로그인하면 마이페이지에도 '***네 당근밭'처럼 로그인 정보가 들어있어야 함
+            로그인 버튼 누르는 순간에 이걸 상태로 가지고 마이페이지에 넘겨줘야 마이페이지에서 닉네임을 쓸 수 있을 것 같음
+            그래서 로그인 js와 마이페이지 js의 상위 컴포넌트인 App에서 상태관리를 해줘야 할 것 같음
+            App에서 useState로 nickname, setNickname 설정해서(초기값 null?빈문자열?) 로그인에는 setNickname을 props로 넘겨주고
+            마이페이지에는 nickName를 넘김
+            마이페이지 -> 닉네임, 편지 넘겨주면 어떨지
+            */}
         }
         else if(arr.length === 0) {
             alert('회원정보가 일치하지 않습니다');
@@ -43,7 +46,6 @@ const Login = () => {
     return (
         <div>
             <div>LOGIN</div>
-    // id를 적는 input
             <input  type="text" placeholder='ID' value={inputId} onChange={handleInputId}></input>
             {/* password 적는 input*/}
             <input  type="password" placeholder='PASSWORD' value={inputPw} onChange={handleInputPw}></input>
@@ -51,7 +53,7 @@ const Login = () => {
             {/*버튼 -> 로그인 / 회원가입 버튼*/}
             <button onClick={loginBtn}>로그인</button>
             {/*회원가입 버튼 ->*/}
-            <Link to="/auth"><button>회원가입</button></Link>
+            <Link to="/join"><button>회원가입</button></Link>
             {/*삼항연산자 -> 어떤 상태 속성이 true 됐을 때만 회원가입 버튼이 뜨게 하자 */}
             {/* close 버튼 -> Index.js로 이동
             <button>닫기</button> */}
