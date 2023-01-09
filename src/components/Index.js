@@ -23,7 +23,10 @@ const Container = styled.div`
 
 
 const Index = () => {
+<<<<<<< Updated upstream
   //hi
+=======
+>>>>>>> Stashed changes
   return (
     <>
     <div className='wrap'>
@@ -31,6 +34,7 @@ const Index = () => {
             <Help/>
             <Button className='eff-fill'>로그인</Button>
             <Button className='eff-fill'>회원가입</Button>
+            <Help/>
         </Container>
     </div>
     </>
