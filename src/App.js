@@ -9,6 +9,7 @@ import dummyJson from './datas/dummyData.json'
 import Login from './components/Login';
 import Mypage from './components/Mypage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Footer from './components/Footer';
 
 function App() {
   const [userData, setUserData] = useState(userJson)
@@ -28,6 +29,7 @@ function App() {
           <Route path="/mypage" element={<Mypage/>} />
         </Routes>
       </Fragment>
+      <Footer/>
     </BrowserRouter>
   );
 }
