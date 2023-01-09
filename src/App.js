@@ -9,6 +9,7 @@ import dummyJson from './datas/dummyData.json'
 import Login from './components/Login';
 import Mypage from './components/Mypage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
 
 function App() {
   const [userData, setUserData] = useState(userJson)
@@ -19,6 +20,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <Header/>
       <Fragment>
         <GlobalStyle />
         <Routes>
