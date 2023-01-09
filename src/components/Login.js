@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import userData from '../datas/userData.json'
+// import userData from '../datas/userData.json'
 import { Link, useNavigate } from 'react-router-dom';
 
 
-const Login = ({ setNickname }) => {
+const Login = ({ setNickname, userData }) => {
     const [inputId, setInputId] = useState('');
     const [inputPw, setInputPw] = useState('');
     {/*버튼 누른 상태? */}
@@ -46,7 +46,6 @@ const Login = ({ setNickname }) => {
     return (
         <div>
             <div>LOGIN</div>
-    // id를 적는 input
             <input  type="text" placeholder='ID' value={inputId} onChange={handleInputId}></input>
             {/* password 적는 input*/}
             <input  type="password" placeholder='PASSWORD' value={inputPw} onChange={handleInputPw}></input>
@@ -54,7 +53,7 @@ const Login = ({ setNickname }) => {
             {/*버튼 -> 로그인 / 회원가입 버튼*/}
             <button onClick={loginBtn}>로그인</button>
             {/*회원가입 버튼 ->*/}
-            <Link to="/auth"><button>회원가입</button></Link>
+            <Link to="/join"><button>회원가입</button></Link>
             {/*삼항연산자 -> 어떤 상태 속성이 true 됐을 때만 회원가입 버튼이 뜨게 하자 */}
             {/* close 버튼 -> Index.js로 이동
             <button>닫기</button> */}

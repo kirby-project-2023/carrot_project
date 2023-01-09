@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom';
 
 const Button = styled.button`
     width: var(--btn-big-w);
@@ -23,8 +24,8 @@ function Index() {
     <>
     <div>
         <Container>
-            <Button className='eff-fill'>로그인</Button>
-            <Button className='eff-fill'>회원가입</Button>
+            <Link to="/login"><Button className='eff-fill'>로그인</Button></Link>
+            <Link to="join"><Button className='eff-fill'>회원가입</Button></Link>
         </Container>
     </div>
     </>
