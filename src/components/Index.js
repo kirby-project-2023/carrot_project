@@ -23,10 +23,6 @@ const Container = styled.div`
 
 
 const Index = () => {
-<<<<<<< Updated upstream
-  //hi
-=======
->>>>>>> Stashed changes
   return (
     <>
     <div className='wrap'>
