@@ -8,6 +8,7 @@ const Button = styled.button`
     background-color: var(--green);
     border-radius: var(--bd-rd-big);
     border: none;
+    margin-top: var(--gap-sm);
 `
 
 const Container = styled.div`
@@ -17,17 +18,19 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-items: center;
+    flex-direction: column;
 `
 
 
 const Index = () => {
+  //hi
   return (
     <>
     <div className='wrap'>
         <Container>
+            <Help/>
             <Button className='eff-fill'>로그인</Button>
             <Button className='eff-fill'>회원가입</Button>
-            <Help/>
         </Container>
     </div>
     </>
