@@ -9,6 +9,7 @@ import dummyJson from './datas/dummyData.json'
 import Login from './components/Login';
 import Mypage from './components/Mypage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
 import Footer from './components/Footer';
 
 function App() {
@@ -23,14 +24,15 @@ function App() {
     <BrowserRouter>
       <Fragment>
         <GlobalStyle />
+        <Header/>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/join" element={<Join userData={userData} setUserData={setUserData} />} />
           <Route path="/login" element={<Login setNickname={setNickname} userData={userData}/>} />
           <Route path="/mypage" element={<Mypage/>} />
         </Routes>
+        <Footer/>
       </Fragment>
-      <Footer/>
     </BrowserRouter>
   );
 }
