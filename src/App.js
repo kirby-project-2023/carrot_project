@@ -9,6 +9,7 @@ import dummyJson from './datas/dummyData.json'
 import Login from './components/Login';
 import Mypage from './components/Mypage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Footer from './components/Footer';
 
 function App() {
   // 여기 수정이 되어야 한다
@@ -29,6 +30,7 @@ function App() {
           <Route path="/mypage" element={<Mypage/>} />
         </Routes>
       </Fragment>
+      <Footer/>
     </BrowserRouter>
   );
 }
