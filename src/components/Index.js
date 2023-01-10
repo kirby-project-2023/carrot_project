@@ -9,6 +9,8 @@ const Button = styled.button`
     background-color: var(--yellow);
     border-radius: var(--bd-rd-big);
     border: none;
+    margin-top: var(--gap-md);
+    cursor: pointer;
 `
 
 const Container = styled.div`
