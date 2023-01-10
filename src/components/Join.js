@@ -197,19 +197,18 @@ const Join = ({ userData, setUserData }) => {
     
     const handleUserData = (event) => {
         event.preventDefault()
-        const { id ,pw } = userInfo
+        const { id ,pw, field } = userInfo
         if (isIncorrect || checkUserData()) {
         // 회원가입 반려
             alert('중복된 Id 이거나 비밀번호가 유효하지 않습니다.')
         } 
         else if (checkItems.length === privateData.length && !checkUserData()) {
-            setUserData([
-                ...userData,
-                {
-                    id,
-                    pw
-                }
-            ])
+            userData.push({
+                id,
+                field,
+                pw
+            })
+            setUserData([...userData])
             initState()
             navigate('/login')
         }
