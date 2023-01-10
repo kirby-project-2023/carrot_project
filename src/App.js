@@ -16,9 +16,7 @@ function App() {
   // 여기 수정이 되어야 한다
   const [ userData, setUserData ] = useState(userJson)
   const [ dummyData, setDummyData ] = useState(dummyJson)
-  
-  {/*Login.js, Mypage.js에서 사용할 state -> mypage에 아이디 띄워야 해서 가져옴 */}
-  const [nickname, setNickname] = useState('');
+  const [ userInfo, setUserInfo ] = useState([])
 
   return (
     <BrowserRouter>
@@ -28,8 +26,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/join" element={<Join userData={userData} setUserData={setUserData} />} />
-          <Route path="/login" element={<Login setNickname={setNickname} userData={userData}/>} />
-          <Route path="/mypage" element={<Mypage/>} />
+          <Route path="/login" element={<Login userData={userData} setUserInfo={setUserInfo}/>} />
+          <Route path="/mypage" element={<Mypage userInfo={userInfo} dummyData={dummyData}/>} />
         </Routes>
         <Footer/>
       </Fragment>
