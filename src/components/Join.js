@@ -1,6 +1,8 @@
 import { clear } from '@testing-library/user-event/dist/clear';
 import React, { Fragment, useEffect, useState } from 'react'
 import styled from 'styled-components';
+import { Link, useNavigate } from 'react-router-dom';
+
 
 // Private Check
 const PrivateWrap = styled.div`
@@ -164,6 +166,7 @@ const JoinBtn = styled.button`
 const Join = ({ userData, setUserData }) => {
     const [ userInfo, setUserInfo ] = useState({
         id: '',
+        field: '',
         pw: '',
         pwConfirm: ''
     })
@@ -177,6 +180,7 @@ const Join = ({ userData, setUserData }) => {
         }
         setUserInfo(user)
     }
+    const navigate = useNavigate();
 
     useEffect(() => {
         passwordConfirm()
@@ -197,8 +201,8 @@ const Join = ({ userData, setUserData }) => {
         if (isIncorrect || checkUserData()) {
         // 회원가입 반려
             alert('중복된 Id 이거나 비밀번호가 유효하지 않습니다.')
-        }
-        else if (!checkUserData()) {
+        } 
+        else if (checkItems.length === privateData.length && !checkUserData()) {
             setUserData([
                 ...userData,
                 {
@@ -207,6 +211,7 @@ const Join = ({ userData, setUserData }) => {
                 }
             ])
             initState()
+            navigate('/login')
         }
     }
     // field 지정을 회원가입에서 해야하는지 확인하기 !
@@ -214,6 +219,7 @@ const Join = ({ userData, setUserData }) => {
     const initState = () => {
         setUserInfo({
             id: '',
+            field: '',
             pw: '',
             pwConfirm: ''
         })
@@ -227,9 +233,13 @@ const Join = ({ userData, setUserData }) => {
         return userData.some(((user) => user.id === userInfo.id))
     }
     const checkClick = () => {
-        setCheckPopup(!checkPopup)
+        if (checkItems.length !== privateData.length) {
+            // 팝업이 뜨고
+            setCheckPopup(true)
+        } else {
+            setCheckPopup(false)
+        }
     }
-    console.log(userData)
 
     const privateData = [
         {
@@ -276,8 +286,6 @@ const Join = ({ userData, setUserData }) => {
         }
       }
 
-
-
     const PrivateData = () => {
         return (
             <PrivateWrap>
@@ -301,13 +309,14 @@ const Join = ({ userData, setUserData }) => {
                         </div>
                         )
                         })}
-                    <JoinBtn className={checkItems.length === privateData.length ? 'active' : 'deactive' } >개인정보동의완료</JoinBtn>
+                    <JoinBtn className={checkItems.length === privateData.length ? 'active' : 'deactive'} onClick={checkClick} >개인정보동의완료</JoinBtn>
                 </PrivateCont>
             </PrivateWrap>
         )
     }
 
 
+    console.log(userData)
 
     return (
         <Fragment>
@@ -318,6 +327,10 @@ const Join = ({ userData, setUserData }) => {
                         <JoinLabel for='joinId'>아이디</JoinLabel>
                     </JoinBox>
                     <JoinBox>
+                        <JoinIp type='text' title='joinField' id='joinField' onChange={handleIdInput('field')} value={userInfo.field} required />
+                        <JoinLabel for='joinField'>닉네임</JoinLabel>
+                    </JoinBox>
+                    <JoinBox>
                         <JoinIp type='password' title='joinPw' id='joinPw' onChange={handleIdInput('pw')} value={userInfo.pw} required />
                         <JoinLabel for='joinPw'>비밀번호</JoinLabel>
                     </JoinBox>
@@ -326,7 +339,7 @@ const Join = ({ userData, setUserData }) => {
                         <JoinLabel for='joinPwConfirm'>비밀번호 확인</JoinLabel>
                     </JoinBox>
                     <JoinBox><div>{isIncorrect ? '비밀번호가 같지 않습니다.' : '' }</div></JoinBox>
-                    <JoinBtn type='submit' onClick={checkClick} >개인정보동의</JoinBtn>
+                    <JoinBtn type='submit' onClick={checkClick} >{checkItems.length === privateData.length ? '가입하기' : '개인정보동의'}</JoinBtn>
                 </JoinForm>
                 {
                     checkPopup ? <PrivateData/> : null
