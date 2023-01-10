@@ -10,6 +10,7 @@ const ModalButton = styled.button`
     border-radius: 50%;
     margin: 0 10px 10px 0;
     background-color: var( --white);
+    cursor: pointer;
 `
 const ModalContainer = styled.div`
   width: 100%;
@@ -20,8 +21,8 @@ const ModalContainer = styled.div`
 
 const ModalBackdrop = styled.div`
   width: 100%;
-  height: 100%;
-  position: absolute;
+  height: 100vh;
+  position: fixed;
   left: 0;
   top: 0;
   background-color: rgba(0, 0, 0, 0.371);
@@ -31,13 +32,35 @@ const ModalBackdrop = styled.div`
 `;
 
 const ModalView = styled.div`
-    width: 50%;
+    width: 30%;
     height: 50%;
     background-color: white;
     display:flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    font-size: var(--fz-big);
+    overflow: hidden;
+    border-radius: var(--bd-rd-big);
+    > section{
+        height: 90%;
+    }
+    > button{
+        width: var(--btn-sm-w);
+        height: 10%;
+        background-color: var(--maincolor);
+        border-radius: var(--bd-rd-big);
+        margin-bottom: var(--gap-sm);
+        cursor: pointer;
+        :hover{
+            background-color: var(--green);
+        }
+    }
 `;
+
+const Content = styled.p`
+ margin: var(--gap-sm);
+`
 
 const Help = () => {
     const [isOpen, setIsOpen] = useState(false)
@@ -48,13 +71,18 @@ const Help = () => {
         <>
             <ModalContainer>
                 <ModalButton
-                onClick={openModalHandler}
+                    onClick={openModalHandler}
                 >
                     ?
                 </ModalButton>
                 {isOpen ?
-                    <ModalBackdrop>
-                        <ModalView>
+                    <ModalBackdrop onClick={openModalHandler}>
+                        <ModalView onClick={event => event.stopPropagation()}>
+                            <section>
+                                <Content>
+                                    어쩌구어쩌구어쩌구어쩌구어쩌구어쩌구어쩌구어쩌구어쩌구어쩌구어쩌구어쩌구어쩌구
+                                </Content>
+                            </section>
                             <button onClick={openModalHandler}>확인</button>
                         </ModalView>
                     </ModalBackdrop> : null
