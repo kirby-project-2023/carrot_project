@@ -8,8 +8,8 @@ const Button = styled.button`
     height: var(--btn-big-h);
     background-color: var(--yellow);
     border-radius: var(--bd-rd-big);
-    margin-top: var(--gap-md);
     border: none;
+    margin-top: var(--gap-md);
     cursor: pointer;
 `
 

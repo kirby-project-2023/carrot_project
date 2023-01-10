@@ -21,7 +21,7 @@ const ModalContainer = styled.div`
 
 const ModalBackdrop = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   position: fixed;
   left: 0;
   top: 0;
@@ -42,24 +42,24 @@ const ModalView = styled.div`
     font-size: var(--fz-big);
     overflow: hidden;
     border-radius: var(--bd-rd-big);
-    > section{
+    > section {
         height: 90%;
-    }
-    > button{
-        width: var(--btn-sm-w);
+    } 
+    > button {
         height: 10%;
+        width: var(--btn-sm-w);
         background-color: var(--maincolor);
         border-radius: var(--bd-rd-big);
         margin-bottom: var(--gap-sm);
         cursor: pointer;
+        //hover 색상 추가해도 되는지 확인하기(마음대로 추가해도 되는지) 
         :hover{
             background-color: var(--green);
         }
     }
 `;
-
 const Content = styled.p`
- margin: var(--gap-sm);
+    margin: var(--gap-sm);
 `
 
 const Help = () => {
@@ -76,11 +76,11 @@ const Help = () => {
                     ?
                 </ModalButton>
                 {isOpen ?
-                    <ModalBackdrop onClick={openModalHandler}>
-                        <ModalView onClick={event => event.stopPropagation()}>
+                    <ModalBackdrop onClick={openModalHandler} >
+                        <ModalView onClick={(event)=> event.stopPropagation()}>
                             <section>
                                 <Content>
-                                    어쩌구어쩌구어쩌구어쩌구어쩌구어쩌구어쩌구어쩌구어쩌구어쩌구어쩌구어쩌구어쩌구
+                                    어쩌구
                                 </Content>
                             </section>
                             <button onClick={openModalHandler}>확인</button>
