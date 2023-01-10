@@ -62,6 +62,7 @@ const Login = ({ setNickname, userData, setUserInfo }) => {
     const [inputId, setInputId] = useState('');
     const [inputPw, setInputPw] = useState('');
     {/*버튼 누른 상태? */ }
+    {/*나한테 왜 이래애애애애앵*/}
 
     const navigate = useNavigate();
 
