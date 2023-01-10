@@ -10,6 +10,7 @@ const ModalButton = styled.button`
     border-radius: 50%;
     margin: 0 10px 10px 0;
     background-color: var( --white);
+    cursor: pointer;
 `
 const ModalContainer = styled.div`
   width: 100%;
@@ -52,9 +53,11 @@ const ModalView = styled.div`
         margin-bottom: var(--gap-sm);
         cursor: pointer;
         //hover 색상 추가해도 되는지 확인하기(마음대로 추가해도 되는지) 
+        :hover{
+            background-color: var(--green);
+        }
     }
 `;
-
 const Content = styled.p`
     margin: var(--gap-sm);
 `
@@ -68,7 +71,7 @@ const Help = () => {
         <>
             <ModalContainer>
                 <ModalButton
-                onClick={openModalHandler}
+                    onClick={openModalHandler}
                 >
                     ?
                 </ModalButton>
