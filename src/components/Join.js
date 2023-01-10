@@ -203,12 +203,16 @@ const Join = ({ userData, setUserData }) => {
             alert('중복된 Id 이거나 비밀번호가 유효하지 않습니다.')
         } 
         else if (checkItems.length === privateData.length && !checkUserData()) {
-            userData.push({
+            // userData.push({
+            //     id,
+            //     field,
+            //     pw
+            // })
+            setUserData([...userData, {
                 id,
                 field,
                 pw
-            })
-            setUserData([...userData])
+            }])
             initState()
             navigate('/login')
         }
