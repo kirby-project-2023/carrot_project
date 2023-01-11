@@ -243,6 +243,10 @@ const Join = ({ userData, setUserData }) => {
             setCheckPopup(false)
         }
     }
+    const ClosePopup = ()=>{
+        setCheckPopup(false)
+        setCheckItems([])
+    }
 
     const privateData = [
         {
@@ -293,7 +297,7 @@ const Join = ({ userData, setUserData }) => {
         return (
             <PrivateWrap>
                 <PrivateCont>
-                    <CloseCheckbox onClick={checkClick}>&times;</CloseCheckbox>
+                    <CloseCheckbox onClick={ClosePopup}>&times;</CloseCheckbox>
                     <PrivateBox>
                     <PrivateCheck type='checkbox' id='privateCheckAll' onChange={(event) => {
                         handleAllCheck(event.target.checked)}}
