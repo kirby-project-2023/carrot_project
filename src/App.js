@@ -13,7 +13,6 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Write from './components/Write';
 
-
 function App() {
   // 여기 수정이 되어야 한다
   const [ userData, setUserData ] = useState(userJson)

@@ -50,26 +50,71 @@ const WriteBtn = styled.button`
   }
 `;
 
+const WriteWrap = styled.div`
+    height: calc(100vh - 100px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+const RewriteModal = styled.div`
+    width: 500px;
+    height: 600px;
+    background: var(--carrot);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+
+const WriterNickname = styled.div`
+    width: 200px;
+    height: 50px;
+    background: var(--silver);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+const Message = styled.div`
+    width: 400px;
+    height: 400px;
+    background: white;
+    margin: 20px 0;
+`
+
+const ReWrite = () => {
+    return (
+        <WriteWrap className='wrap'>
+            <RewriteModal>
+                <WriterNickname><span>{'편지쓴사람'}</span></WriterNickname>
+                <Message />
+            </RewriteModal>
+        </WriteWrap>
+    )
+}
+
 const Write = ({ userInfo, dummyData }) => {
-  const [textarea, setTextarea] = useState('');
-  // nickname + content 데이터 받아서 dummyData.js 에 신규 아이디로 추가해야함
-  // userData.js 에서는 contentLst 에 추가된 신규 아이디 임의로? 넣어주고 그 field 에서 content 보여줘야함
+    const [textarea, setTextarea] = useState('');
+    // nickname + content 데이터 받아서 dummyData.js 에 신규 아이디로 추가해야함
+    // userData.js 에서는 contentLst 에 추가된 신규 아이디 임의로? 넣어주고 그 field 에서 content 보여줘야함
 
 
 
-  return (
-    <div>
-      <WriteForm action='' method='get'>
-        <Owner>To. 커비왕</Owner>
-        <WriteTextArea maxLength={300} />
-        <NicknameBox>
-          <NicknameLabel>From.</NicknameLabel>
-          <NicknameIp type='text' />
-        </NicknameBox>
-        <WriteBtn className='eff-raise'>당근 보내기</WriteBtn>
-      </WriteForm>
-    </div>
-  )
+    return (
+        <div>
+            <WriteForm action='' method='get'>
+                <Owner>To. 커비왕</Owner>
+                <WriteTextArea maxLength={300} />
+                <NicknameBox>
+                    <NicknameLabel>From.</NicknameLabel>
+                    <NicknameIp type='text' />
+                </NicknameBox>
+                <WriteBtn className='eff-raise'>당근 보내기</WriteBtn>
+            </WriteForm>
+        </div>
+    )
 }
 
 export default Write
