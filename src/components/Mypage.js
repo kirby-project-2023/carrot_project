@@ -29,12 +29,13 @@ const NothingDiv = styled.div`
 
 const LetterArea = styled.div`
     display: flex;
-    background-color: var(--white);
+    background-color: var(--ground);
     flex-wrap : wrap;
     justify-content: center;
     align-items: center;
     width: 80%;
     height: 70vh;
+    border-radius: var(--bd-rd-big);
 `
 
 const CarrotBtn = styled.button`
@@ -56,29 +57,33 @@ const CarrotBtn = styled.button`
 const Mypage = ({ userInfo, dummyData }) => {
     // const [isClicked, setIsClicked] = useState(false)
     const [isOpen, setIsOpen] = useState('')
+    const [clicked, setClicked] = useState([])
     const openModalHandler = (el) => {
+        console.log(el)
         setIsOpen(el)
     }
-    // const clickColorChange = () => {
-    //     // event target을 써야 한번에 바뀌는 불상사가 없을 것 같은데...
-    //     // 현재 상태 -> 누르면 모든 버튼의 색이 바뀌어버림...
-    //     // Letters의 닫기 버튼에 핸들러 함수를 적용해서 isClicked라는 상태를 걔가 관리하게 해서 하면 동시에 적용되는 일이 없지 않을까요?(나중에 건의 드리면 좋겠다)
-    //     setIsClicked(true);
-    // }
+
+    const clickColorChange = (target) => {
+        setClicked([...clicked, target]);
+    }
 
     return (
         <div className='wrap'>
             <MypageDiv>
                 <TitleDiv>2023 {userInfo[0].field} 달토끼네 당근밭</TitleDiv>
                 <LetterArea>
-                    {userInfo[0].contentLst === undefined ? 
-                    <NothingDiv>친구들에게 당근을 요청하세요!</NothingDiv>
-                    : userInfo[0].contentLst.map(el => {
-                        return <>
-                        <CarrotBtn onClick={() => openModalHandler(el)} key={el}>{el}</CarrotBtn>
-                        {isOpen === el ? <Letter openModalHandler={openModalHandler} ></Letter> : null}
-                    </>
-                    })}
+                    {userInfo[0].contentLst === undefined ?
+                        <NothingDiv>친구들에게 당근을 요청하세요!</NothingDiv>
+                        : userInfo[0].contentLst.map(el => {
+                            return <>
+                                    <CarrotBtn
+                                        className={`${clicked.includes(el) ? "clicked" : ""}`}
+                                        onClick={() => {openModalHandler(el); clickColorChange(el)}} key={el}>
+                                        {el}
+                                    </CarrotBtn>
+                                {isOpen === el ? <Letter openModalHandler={openModalHandler} dummyData={dummyData}></Letter> : null}
+                            </>
+                        })}
                 </LetterArea>
             </MypageDiv>
         </div>
