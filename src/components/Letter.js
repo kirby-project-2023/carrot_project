@@ -1,15 +1,15 @@
 import styled from 'styled-components'
 
 const ModalBackdrop = styled.div`
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  left: 0;
-  top: 0;
-  background-color: rgba(0, 0, 0, 0.371);
-  display:flex;
-  align-items: center;
-  justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.371);
+    display:flex;
+    align-items: center;
+    justify-content: center;
 `;
 
 const ModalView = styled.div`
@@ -58,7 +58,8 @@ const Letter = ({openModalHandler}) => { // 모달 창 열고 닫는거 인자�
                             어쩌구
                         </Content>
                     </section>
-                    <button onClick={()=>openModalHandler(0)}>확인</button>
+                    <button 
+                    onClick={()=>openModalHandler(0)}>확인</button>
                 </ModalView>
             </ModalBackdrop>
         </>
