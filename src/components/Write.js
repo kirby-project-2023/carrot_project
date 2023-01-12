@@ -95,21 +95,30 @@ const ReWrite = () => {
     )
 }
 
-const Write = ({ userInfo, dummyData }) => {
-    const [textarea, setTextarea] = useState('');
+const Write = ({ userInfo, dummyData, sharedId }) => {
+    const [content, setContent] = useState('');
+    const [nickname, setNickname] = useState('');
+
+    const messageText = (e)=>{
+      setContent(e.target.value);
+      console.log(e.target.value)
+    }
+    const newNickname = (e)=>{
+      setNickname(e.target.value);
+      console.log(e.target.value);
+    }
     // nickname + content 데이터 받아서 dummyData.js 에 신규 아이디로 추가해야함
     // userData.js 에서는 contentLst 에 추가된 신규 아이디 임의로? 넣어주고 그 field 에서 content 보여줘야함
-
-
 
     return (
         <div>
             <WriteForm action='' method='get'>
-                <Owner>To. 커비왕</Owner>
-                <WriteTextArea maxLength={300} />
+              <div className='backdgorsd'></div>
+                <Owner>To. {sharedId}</Owner>
+                <WriteTextArea maxLength={300} value={content} onChange={messageText} />
                 <NicknameBox>
                     <NicknameLabel>From.</NicknameLabel>
-                    <NicknameIp type='text' />
+                    <NicknameIp type='text' value={nickname} onChange={newNickname} />
                 </NicknameBox>
                 <WriteBtn className='eff-raise'>당근 보내기</WriteBtn>
             </WriteForm>
