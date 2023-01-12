@@ -34,6 +34,7 @@ const Main = styled.main`
 
 const Index = () => {
   return (
+
     <div className='wrap'>
         <Container>
             <Main>
