@@ -33,7 +33,7 @@ function App() {
     <BrowserRouter>
       <Fragment>
         <GlobalStyle />
-        <Header />
+        <Header userInfo={userInfo}/>
         <Routes>
           <Route path={`/`} element={<Index />} />
           <Route path={`/id=${sharedId}`} element={<Index2 sharedId={sharedId} />} />
