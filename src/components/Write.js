@@ -92,7 +92,7 @@ const WriterNickname = styled.div`
     align-items: center;
 `
 
-const ButtonContainer = styled.button`
+const ButtonContainer = styled.div`
   display: flex;
 `
 
@@ -117,7 +117,7 @@ const Message = styled.div`
     height: 400px;
     background: white;
     margin: 20px 0;
-    background: none;
+    /* background: none; */
 `
 
 const Write = ({ userInfo, dummyData, sharedId }) => {
@@ -140,15 +140,16 @@ const Write = ({ userInfo, dummyData, sharedId }) => {
     setIsOpen(true)
   }
 
-  const ReWrite = ({ messageText, newNickname, sharedId }) => {
+  const ReWrite = ({ content, nickname, sharedId }) => {
+    console.log(content)
 
     return (
       <WriteWrap className='wrap' action='' method='get' onSubmit={(e) => e.preventDefault()}>
         <ModalBackDrop>
           <div className='backdrop'>
           <WriterNickname><span>{sharedId}</span></WriterNickname>
-          <Message>{messageText}</Message>
-          <div><span>From. {newNickname}</span></div>
+          <Message>{content}</Message>
+          <div><span>From. {nickname}</span></div>
           <ButtonContainer>
             <ModalBtn>수정하기</ModalBtn><ModalBtn>보내기</ModalBtn>
           </ButtonContainer>
@@ -156,7 +157,7 @@ const Write = ({ userInfo, dummyData, sharedId }) => {
         </ModalBackDrop>
       </WriteWrap>
     )
-}
+  }
 
   return (
       <div>
@@ -170,7 +171,7 @@ const Write = ({ userInfo, dummyData, sharedId }) => {
               <WriteBtn className='eff-raise' onClick={openModalHandler}>당근 보내기</WriteBtn>
           </WriteForm>
           {
-            isOpen ? <ReWrite sharedId={sharedId} dummyData={dummyData} messageText={messageText} newNickname={newNickname}/> : null
+            isOpen ? <ReWrite sharedId={sharedId} dummyData={dummyData} content={content} nickname={nickname}/> : null
           }
       </div>
   )

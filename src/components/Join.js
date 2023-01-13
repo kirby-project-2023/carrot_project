@@ -90,6 +90,7 @@ const CloseCheckbox = styled.span`
 
 // Join Form
 const JoinForm = styled.form`
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
