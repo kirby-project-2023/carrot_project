@@ -2,7 +2,7 @@ import { clear } from '@testing-library/user-event/dist/clear';
 import React, { Fragment, useEffect, useState } from 'react'
 import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
-
+import { BaseInputBox, BaseInput, BaseLabel } from '../styles/style';
 
 // Private Check
 const PrivateWrap = styled.div`
@@ -91,47 +91,9 @@ const CloseCheckbox = styled.span`
 // Join Form
 const JoinForm = styled.form`
     display: flex;
-    height: 100vh;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-`;
-const JoinBox = styled.div`
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin-bottom: var(--gap-md);
-`;
-const JoinIp = styled.input`
-    width: var(--ip-big-w);
-    height: var(--ip-big-h);
-    border: 1px solid var(--maincolor);
-    border-radius: var(--bd-rd-sm);
-    padding: 0 var(--gap-sm);
-    transition: var(--trans);
-    &:focus{
-        box-shadow: var(--shadow);
-        transition: var(--trans);
-    }
-`;
-const JoinLabel = styled.label`
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: var(--fz-md);
-    font-weight: bold;
-    text-transform: uppercase;
-    pointer-events: none;
-    color: var(--gray);
-    background: #fff;
-    transition: var(--trans);
-    ${JoinIp}:focus ~ &,
-    ${JoinIp}:valid ~ & {
-        top: 0;
-        font-size: var(--fz-sm);
-        transition: var(--trans);
-    };
 `;
 const JoinBtn = styled.button`
     position: relative;
@@ -277,21 +239,21 @@ const Join = ({ userData, setUserData }) => {
     const [checkItems, setCheckItems] = useState([])
     const handleAllCheck = (checked) => {
         if (checked) {
-          const idArray = []
-          privateData.forEach((el) => idArray.push(el.id))
-          setCheckItems(idArray)
+            const idArray = []
+            privateData.forEach((el) => idArray.push(el.id))
+            setCheckItems(idArray)
         } else {
-          setCheckItems([])
+            setCheckItems([])
         }
-      }
+    }
     
-      const handleSingleCheck = (checked, id) => {
+    const handleSingleCheck = (checked, id) => {
         if (checked) {
-          setCheckItems(prev => [...prev, id])
+            setCheckItems(prev => [...prev, id])
         } else {
-          setCheckItems(checkItems.filter((el => el !== id)))
+            setCheckItems(checkItems.filter((el => el !== id)))
         }
-      }
+    }
 
     const PrivateData = () => {
         return (
@@ -299,23 +261,24 @@ const Join = ({ userData, setUserData }) => {
                 <PrivateCont>
                     <CloseCheckbox onClick={ClosePopup}>&times;</CloseCheckbox>
                     <PrivateBox>
-                    <PrivateCheck type='checkbox' id='privateCheckAll' onChange={(event) => {
-                        handleAllCheck(event.target.checked)}}
-                        checked={checkItems.length === privateData.length ? true : false}
+                        <PrivateCheck type='checkbox' id='privateCheckAll' onChange={(event) => {
+                            handleAllCheck(event.target.checked)}}
+                            checked={checkItems.length === privateData.length ? true : false}
                         />
                         <PrivateLabel for='privateCheckAll'>약관 전체 동의</PrivateLabel>
                     </PrivateBox>
-                    {privateData.map((data, id) => {
-                        return (
-                            <div key={id}>
-                            <PrivateCheck type='checkbox' id={`ip${id}`} onChange={(event) => {
-                            handleSingleCheck(event.target.checked, data.id)}}
-                            checked={checkItems.includes(data.id) ? true : false}/>
-                            <PrivateLabel for={`ip${id}`} >{data.label}</PrivateLabel>
-                            <PrivateTextarea>{data.text}</PrivateTextarea>
-                        </div>
-                        )
-                        })}
+                    {
+                        privateData.map((data, id) => {
+                            return (
+                                <div key={id}>
+                                <PrivateCheck type='checkbox' id={`ip${id}`} onChange={(event) => {
+                                handleSingleCheck(event.target.checked, data.id)}}
+                                checked={checkItems.includes(data.id) ? true : false}/>
+                                <PrivateLabel for={`ip${id}`} >{data.label}</PrivateLabel>
+                                <PrivateTextarea>{data.text}</PrivateTextarea>
+                            </div>)   
+                        })
+                    }
                     <JoinBtn className={checkItems.length === privateData.length ? 'active' : 'deactive'} onClick={checkClick} >개인정보동의완료</JoinBtn>
                 </PrivateCont>
             </PrivateWrap>
@@ -326,33 +289,31 @@ const Join = ({ userData, setUserData }) => {
     console.log(userData)
 
     return (
-        <Fragment>
-            <div className='wrap'>
-                <JoinForm action='' method='get' onSubmit={handleUserData}>
-                    <JoinBox>
-                        <JoinIp type='text' title='joinId' id='joinId' onChange={handleIdInput('id')} value={userInfo.id} required />
-                        <JoinLabel for='joinId'>아이디</JoinLabel>
-                    </JoinBox>
-                    <JoinBox>
-                        <JoinIp type='text' title='joinField' id='joinField' onChange={handleIdInput('field')} value={userInfo.field} required />
-                        <JoinLabel for='joinField'>닉네임</JoinLabel>
-                    </JoinBox>
-                    <JoinBox>
-                        <JoinIp type='password' title='joinPw' id='joinPw' onChange={handleIdInput('pw')} value={userInfo.pw} required />
-                        <JoinLabel for='joinPw'>비밀번호</JoinLabel>
-                    </JoinBox>
-                    <JoinBox>
-                        <JoinIp type='password' title='joinPwConfirm' id='joinPwConfirm' onChange={handleIdInput('pwConfirm')} value={userInfo.pwConfirm} required />
-                        <JoinLabel for='joinPwConfirm'>비밀번호 확인</JoinLabel>
-                    </JoinBox>
-                    <JoinBox><div>{isIncorrect ? '비밀번호가 같지 않습니다.' : '' }</div></JoinBox>
-                    <JoinBtn type='submit' onClick={checkClick} >{checkItems.length === privateData.length ? '가입하기' : '개인정보동의'}</JoinBtn>
-                </JoinForm>
-                {
-                    checkPopup ? <PrivateData/> : null
-                }
-            </div>
-        </Fragment>
+        <div className='wrap'>
+            <JoinForm action='' method='get' onSubmit={handleUserData}>
+                <BaseInputBox>
+                    <BaseInput type='text' title='joinId' id='joinId' onChange={handleIdInput('id')} value={userInfo.id} required />
+                    <BaseLabel for='joinId'>아이디</BaseLabel>
+                </BaseInputBox>
+                <BaseInputBox>
+                    <BaseInput type='text' title='joinField' id='joinField' onChange={handleIdInput('field')} value={userInfo.field} required />
+                    <BaseLabel for='joinField'>닉네임</BaseLabel>
+                </BaseInputBox>
+                <BaseInputBox>
+                    <BaseInput type='password' title='joinPw' id='joinPw' onChange={handleIdInput('pw')} value={userInfo.pw} required />
+                    <BaseLabel for='joinPw'>비밀번호</BaseLabel>
+                </BaseInputBox>
+                <BaseInputBox>
+                    <BaseInput type='password' title='joinPwConfirm' id='joinPwConfirm' onChange={handleIdInput('pwConfirm')} value={userInfo.pwConfirm} required />
+                    <BaseLabel for='joinPwConfirm'>비밀번호 확인</BaseLabel>
+                </BaseInputBox>
+                <BaseInputBox><div>{isIncorrect ? '비밀번호가 같지 않습니다.' : '' }</div></BaseInputBox>
+                <JoinBtn type='submit' onClick={checkClick} >{checkItems.length === privateData.length ? '가입하기' : '개인정보동의'}</JoinBtn>
+            </JoinForm>
+            {
+                checkPopup ? <PrivateData/> : null
+            }
+        </div>
     )
 }
 
