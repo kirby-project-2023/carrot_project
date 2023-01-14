@@ -4,7 +4,7 @@ export const BaseInputBox = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-    margin-bottom: ${(props) => props.marginBottom || 'var(--gap-md)'};
+  margin-bottom: ${(props) => props.marginBottom || 'var(--gap-md)'};
 `;
 export const BaseInput = styled.input`
   width: var(--ip-big-w);
@@ -14,11 +14,12 @@ export const BaseInput = styled.input`
   border-radius: var(--bd-rd-sm);
   padding: 0 var(--gap-sm);
   transition: var(--trans);
+  border-color: ${(props) => props.borderColor || 'var(--maincolor)'};
+  color: ${(props) => props.color || 'var(--white)'};
   &:focus{
-      box-shadow: var(--shadow);
-      transition: var(--trans);
+    box-shadow: var(--shadow);
+    transition: var(--trans);
   }
-    border-color: ${(props) => props.borderColor || 'var(--maincolor)'};
 `;
 export const BaseLabel = styled.label`
   position: absolute;
@@ -30,14 +31,14 @@ export const BaseLabel = styled.label`
   text-transform: uppercase;
   pointer-events: none;
   transition: var(--trans);
+  color: ${(props) => props.color || 'var(--white)'};
+  background: ${(props) => props.background || 'var(--night)'};
   ${BaseInput}:focus ~ &,
   ${BaseInput}:valid ~ & {
-      top: 0;
-      font-size: var(--fz-sm);
-      transition: var(--trans);
+    top: 0;
+    font-size: var(--fz-sm);
+    transition: var(--trans);
   };
-    color: ${(props) => props.color || 'var(--gray)'};
-    background: ${(props) => props.background || 'var(--white)'};
 `;
 export const BaseButton = styled.button`
   position: relative;
@@ -47,12 +48,27 @@ export const BaseButton = styled.button`
   border-radius: var(--bd-rd-sm);
   cursor: pointer;
   transition: var(--trans);
-  
-    color: ${(props) => props.color || 'var(--white)'};
-    background: ${(props) => props.background || 'var(--maincolor)'};
+  color: ${(props) => props.color || 'var(--black)'};
+  background: ${(props) => props.background || 'var(--yellow)'};
+  margin-top: ${(props) => props.marginTop || 0};
+  margin-bottom: ${(props) => props.marginBottom || 'var(--gap-sm)'};
   &:hover {
-    box-shadow: var(--shadow);
+    /* box-shadow: var(--shadow); */
     transition: var(--trans);
-      background: ${(props) => props.hoverBg || 'var(--maincolor)'};
+    background: ${(props) => props.hoverBg || 'var(--maincolor)'};
   };
+`;
+export const SmallButton = styled.button`
+  width: var(--btn-sm-w);
+  height: var(--btn-sm-h);
+  border-radius: var(--bd-rd-sm);
+  font-size: var(--fz-md);
+  background: ${(props) => props.background || 'var(--yellow)'};
+  margin-bottom: ${(props) => props.marginBottom || 'var(--gap-sm)'};
+  transition: var(--trans);
+  cursor: pointer;
+  &:hover{
+    background: ${(props) => props.hoverBg || 'var(--maincolor)'};
+    transition: var(--trans);
+  }
 `;

@@ -1,18 +1,18 @@
+import React, { useState , useEffect } from "react";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './styles/variable.css';
-import styled from 'styled-components';
 import GlobalStyle from './styles/GlobalStyle';
-import { Fragment, useEffect, useState } from 'react';
-import Index from './components/Index'
-import Join from './components/Join'
 import userJson from './datas/userData.json'
 import dummyJson from './datas/dummyData.json'
+import Header from './components/Header';
+import Index from './components/Index'
+import Index2 from './components/Index2';
+import Join from './components/Join'
 import Login from './components/Login';
 import Mypage from './components/Mypage';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
-import Footer from './components/Footer';
 import Write from './components/Write';
-import Index2 from './components/Index2';
+import Footer from './components/Footer';
+import Help from './components/Help'
 
 function App() {
   // 여기 수정이 되어야 한다
@@ -31,7 +31,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Fragment>
+      <div className='app-wrap'>
         <GlobalStyle />
         <Header userInfo={userInfo}/>
         <Routes>
@@ -43,7 +43,8 @@ function App() {
           <Route path="/write" element={<Write userInfo={userInfo} dummyData={dummyData} sharedId={sharedId} />} />
         </Routes>
         <Footer />
-      </Fragment>
+        <Help/>
+      </div>
     </BrowserRouter>
   );
 }

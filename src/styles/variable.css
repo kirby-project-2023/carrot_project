@@ -61,6 +61,6 @@
   --ground: #57473a;
   
   /* shadow */
-  --shadow: rgba(99, 99, 99, 0.7) 0px 2px 8px 0px;
+  --shadow: 0px 2px 8px 0px rgba(255,255,255, 0.4);
   --effect-sd: 0 0 0 2em transparent;
 }

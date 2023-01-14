@@ -1,8 +1,8 @@
 import { clear } from '@testing-library/user-event/dist/clear';
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
-import { BaseInputBox, BaseInput, BaseLabel } from '../styles/style';
+import { BaseInputBox, BaseInput, BaseLabel, BaseButton } from '../styles/style';
 
 // Private Check
 const PrivateWrap = styled.div`
@@ -90,37 +90,10 @@ const CloseCheckbox = styled.span`
 
 // Join Form
 const JoinForm = styled.form`
-    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-`;
-const JoinBtn = styled.button`
-    position: relative;
-    width: var(--ip-big-w);
-    height: var(--ip-big-h);
-    text-align: center;
-    background: var(--maincolor);
-    border-radius: var(--bd-rd-sm);
-    color: #fff;
-    cursor: pointer;
-    transition: var(--trans);
-    &:hover {
-        box-shadow: var(--shadow);
-        transition: var(--trans);
-    };
-    ${PrivateCont} > & {
-        z-index: 10;
-        margin-top: var(--gap-md)
-    }
-    ${PrivateCont} > &.deactive {
-        background: var(--gray);
-        box-shadow: none;
-        transition: none;
-        cursor: initial;
-        pointer-events: none;
-    }
 `;
 
 
@@ -280,7 +253,7 @@ const Join = ({ userData, setUserData }) => {
                             </div>)   
                         })
                     }
-                    <JoinBtn className={checkItems.length === privateData.length ? 'active' : 'deactive'} onClick={checkClick} >개인정보동의완료</JoinBtn>
+                    <BaseButton className={checkItems.length === privateData.length ? 'active' : 'deactive'} onClick={checkClick} marginTop={'var(--gap-sm)'}>개인정보동의완료</BaseButton>
                 </PrivateCont>
             </PrivateWrap>
         )
@@ -309,7 +282,7 @@ const Join = ({ userData, setUserData }) => {
                     <BaseLabel for='joinPwConfirm'>비밀번호 확인</BaseLabel>
                 </BaseInputBox>
                 <BaseInputBox><div>{isIncorrect ? '비밀번호가 같지 않습니다.' : '' }</div></BaseInputBox>
-                <JoinBtn type='submit' onClick={checkClick} >{checkItems.length === privateData.length ? '가입하기' : '개인정보동의'}</JoinBtn>
+                <BaseButton type='submit' onClick={checkClick} >{checkItems.length === privateData.length ? '가입하기' : '개인정보동의'}</BaseButton>
             </JoinForm>
             {
                 checkPopup ? <PrivateData/> : null
