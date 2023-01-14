@@ -22,6 +22,7 @@ export const BaseInput = styled.input`
   transition: var(--trans);
   border-color: ${(props) => props.borderColor || 'var(--maincolor)'};
   color: ${(props) => props.color || 'var(--white)'};
+  background: ${(props) => props.background || 'transparent'};
   &:focus{
     box-shadow: var(--shadow);
     transition: var(--trans);
@@ -48,12 +49,15 @@ export const BaseLabel = styled.label`
 `;
 export const BaseButton = styled.button`
   position: relative;
+  display: block;
   width: var(--ip-big-w);
   height: var(--ip-big-h);
   text-align: center;
   border-radius: var(--bd-rd-sm);
   cursor: pointer;
   transition: var(--trans);
+  margin-left: auto;
+  margin-right: auto;
   color: ${(props) => props.color || 'var(--black)'};
   background: ${(props) => props.background || 'var(--yellow)'};
   margin-top: ${(props) => props.marginTop || 0};
