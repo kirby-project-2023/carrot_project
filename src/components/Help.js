@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import styled from 'styled-components'
 import { SmallButton } from '../styles/style';
+import { ModalWrap, ModalBack, ModalContent } from '../styles/style';
 
 
 const ModalButton = styled.button`
@@ -17,6 +18,11 @@ const ModalButton = styled.button`
     margin: 0 10px 10px 0;
     background-color: var( --white);
     cursor: pointer;
+    @media (max-width: 768px){
+        bottom: 10px;
+        width: 30px; height: 30px;
+        font-size: var(--fz-big);
+    }
 `
 const ModalContainer = styled.div`
   width: 100%;
@@ -63,25 +69,25 @@ const Help = () => {
     }
     return (
         <>
-            <ModalContainer>
+            <ModalWrap>
                 <ModalButton
                     onClick={openModalHandler}
                 >
                     ?
                 </ModalButton>
                 {isOpen ?
-                    <ModalBackdrop onClick={openModalHandler} >
-                        <ModalView onClick={(event)=> event.stopPropagation()}>
+                    <ModalBack onClick={openModalHandler} >
+                        <ModalContent onClick={(event)=> event.stopPropagation()}>
                             <section>
                                 <Content>
                                     어쩌구
                                 </Content>
                             </section>
                             <SmallButton onClick={openModalHandler}>확인</SmallButton>
-                        </ModalView>
-                    </ModalBackdrop> : null
+                        </ModalContent>
+                    </ModalBack> : null
                 }
-            </ModalContainer>
+            </ModalWrap>
         </>
     )
 }

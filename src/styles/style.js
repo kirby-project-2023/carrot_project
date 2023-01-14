@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+export const FormCenter = styled.form`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: ${(props) => props.flexDirection || 'column'};
+`;
 export const BaseInputBox = styled.div`
   position: relative;
   display: flex;
@@ -53,7 +59,6 @@ export const BaseButton = styled.button`
   margin-top: ${(props) => props.marginTop || 0};
   margin-bottom: ${(props) => props.marginBottom || 'var(--gap-sm)'};
   &:hover {
-    /* box-shadow: var(--shadow); */
     transition: var(--trans);
     background: ${(props) => props.hoverBg || 'var(--maincolor)'};
   };
@@ -70,5 +75,38 @@ export const SmallButton = styled.button`
   &:hover{
     background: ${(props) => props.hoverBg || 'var(--maincolor)'};
     transition: var(--trans);
+  }
+`;
+
+export const ModalWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+`;
+export const ModalBack = styled.div`
+  position: absolute;
+  left: 0; right: 0; top: 0; bottom: 0;
+  background: var(--modalBack);
+`;
+export const ModalContent = styled.div`
+  position: absolute;
+  left: 50%; top: 50%; transform: translate(-50%,-50%);
+  background: var(--white);
+  border-radius: var(--bd-rd-big);
+  width: 50%; 
+  z-index: 10;
+  display: flex; justify-content: center; align-items: center;
+  flex-direction: column;
+  height: ${(props) => props.height || '80%'};
+  @media (max-width: 768px){
+    width: 80%;
+    height: ${(props) => props.height || '80vh'};
   }
 `;

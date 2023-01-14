@@ -8,6 +8,9 @@ const CopyRights = styled.footer`
   height: 50px;
   text-align: center;
   color: var(--white);
+  @media (max-width: 768px){
+    font-size: var(--fz-sm);
+  }
 `
 
 function Footer() {
