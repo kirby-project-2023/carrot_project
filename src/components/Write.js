@@ -120,22 +120,60 @@ const Message = styled.div`
     /* background: none; */
 `
 
-const Write = ({ userInfo, dummyData, sharedId }) => {
+const Write = ({ userData, setUserData, userInfo, dummyData, sharedId, setDummyData }) => {
   const [content, setContent] = useState('');
   const [nickname, setNickname] = useState('');
+  console.log(sharedId)
 
-  const messageText = (e)=>{
+  const messageText = (e) => {
     setContent(e.target.value);
     console.log(e.target.value)
   }
-  const newNickname = (e)=>{
+  const newNickname = (e) => {
     setNickname(e.target.value);
     console.log(e.target.value);
+  }
+  const test = () => {
+    console.log(dummyData.length + 1)
+    const dummyDataobj = {
+      id: dummyData.length + 1,
+      nickname,
+      content
+    }
+    const newDummyData = [
+      ...dummyData,
+      dummyDataobj
+    ]
+    localStorage.setItem('dummyData', JSON.stringify(newDummyData))
+    setDummyData(JSON.parse(localStorage.getItem("dummyData")))
+    let index = 0
+    const userDataarr = userData.filter((e,i) => {
+      if(e.id === sharedId){
+        index = i
+      }
+      return e.id === sharedId
+    })
+    const userDataobj = {
+      id: userDataarr[0].id,
+      pw: userDataarr[0].pw,
+      field: userDataarr[0].field,
+      contentLst: [
+        ...(userDataarr[0].contentLst),
+        dummyData.length
+      ]
+    }
+
+    const news = [...userData]
+    news[index] = userDataobj
+    console.log(news)
+    localStorage.setItem('userData',JSON.stringify(news))
+    setUserData(JSON.parse(localStorage.getItem('userData')))
+
   }
   // nickname + content 데이터 받아서 dummyData.js 에 신규 아이디로 추가해야함
   // userData.js 에서는 contentLst 에 추가된 신규 아이디 임의로? 넣어주고 그 field 에서 content 보여줘야함
 
-  const [ isOpen, setIsOpen ] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   const openModalHandler = () => {
     setIsOpen(true)
   }
@@ -147,12 +185,12 @@ const Write = ({ userInfo, dummyData, sharedId }) => {
       <WriteWrap className='wrap' action='' method='get' onSubmit={(e) => e.preventDefault()}>
         <ModalBackDrop>
           <div className='backdrop'>
-          <WriterNickname><span>{sharedId}</span></WriterNickname>
-          <Message>{content}</Message>
-          <div><span>From. {nickname}</span></div>
-          <ButtonContainer>
-            <ModalBtn>수정하기</ModalBtn><ModalBtn>보내기</ModalBtn>
-          </ButtonContainer>
+            <WriterNickname><span>{sharedId}</span></WriterNickname>
+            <Message>{content}</Message>
+            <div><span>From. {nickname}</span></div>
+            <ButtonContainer>
+              <ModalBtn>수정하기</ModalBtn><ModalBtn onClick={test}>보내기</ModalBtn>
+            </ButtonContainer>
           </div>
         </ModalBackDrop>
       </WriteWrap>
@@ -160,20 +198,20 @@ const Write = ({ userInfo, dummyData, sharedId }) => {
   }
 
   return (
-      <div>
-          <WriteForm>
-              <Owner>To. {sharedId}</Owner>
-              <WriteTextArea maxLength={300} value={content} onChange={messageText} />
-              <NicknameBox>
-                  <NicknameLabel>From.</NicknameLabel>
-                  <NicknameIp type='text' value={nickname} onChange={newNickname} />
-              </NicknameBox>
-              <WriteBtn className='eff-raise' onClick={openModalHandler}>당근 보내기</WriteBtn>
-          </WriteForm>
-          {
-            isOpen ? <ReWrite sharedId={sharedId} dummyData={dummyData} content={content} nickname={nickname}/> : null
-          }
-      </div>
+    <div>
+      <WriteForm>
+        <Owner>To. {sharedId}</Owner>
+        <WriteTextArea maxLength={300} value={content} onChange={messageText} />
+        <NicknameBox>
+          <NicknameLabel>From.</NicknameLabel>
+          <NicknameIp type='text' value={nickname} onChange={newNickname} />
+        </NicknameBox>
+        <WriteBtn className='eff-raise' onClick={openModalHandler}>당근 보내기</WriteBtn>
+      </WriteForm>
+      {
+        isOpen ? <ReWrite sharedId={sharedId} dummyData={dummyData} content={content} nickname={nickname} /> : null
+      }
+    </div>
   )
 }
 
