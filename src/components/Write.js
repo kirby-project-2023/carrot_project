@@ -1,63 +1,37 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
+import { FormCenter,BaseInput,BaseButton } from '../styles/style';
 
 const WriteForm = styled.div`
-  padding: var(--gap-large);
-  background: var(--carrot);
-  width: 100%; height: calc(100vh - 100px);
+  width: 100%;
 `;
 const Owner = styled.h2`
-  color: #fff;
+  color: var(--white);
   font-size: var(--fz-big);
 `;
 const WriteTextArea = styled.textarea`
   width: 100%;
   height: var(--text-h);
-  background: #fff;
+  background: var(--white);
   resize: none;
   margin-top: var(--gap-big);
-  padding: var(--gap-big);
+  padding: var(--gap-md);
   border-radius: var(--bd-rd-big);
+  @media (max-width: 768px){
+    height : 30vh;
+  }
 `;
 const NicknameBox = styled.div`
   display: flex; justify-content: flex-end; align-items: center;
   margin-top: var(--gap-big);
 `;
-const NicknameIp = styled.input`
-  width: var(--ip-big-w);
-  height: var(--ip-big-h);
-  background: #fff;
-  border-radius: var(--bd-rd-sm);
-  padding: var(--gap-sm);
-`;
 const NicknameLabel = styled.label`
-  color: #fff;
+  color: var(--white);
   font-size: var(--fz-big);
   padding-right: var(--gap-md);
 `;
-const WriteBtn = styled.button`
-  width: var(--btn-big-w);
-  height: var(--btn-big-h);
-  background: var(--green);
-  color: #fff;
-  border-radius: var(--bd-rd-sm);
-  margin: var(--gap-large) auto 0;
-  display: block;
-  cursor: pointer;
-  &:hover{
-    background: var(--night);
-    transition: var(--trans);
-  }
-`;
-
 
 //ReWrite Modal
-const WriteWrap = styled.form`
-    height: calc(100vh - 100px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
 const ModalBackDrop = styled.div`
   width: 100%;
   height: 100vh;
@@ -80,133 +54,121 @@ const ModalBackDrop = styled.div`
   align-items: center;
   justify-content: center;
   }
-`
-
+`;
 const WriterNickname = styled.div`
-    width: 200px;
-    height: 50px;
-    background: var(--silver);
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
-
+  width: 200px;
+  height: 50px;
+  background: var(--silver);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 const ButtonContainer = styled.div`
   display: flex;
-`
-
+`;
 const ModalBtn = styled.button`
-    position: relative;
-    width: var(--ip-big-w);
-    height: var(--ip-big-h);
-    text-align: center;
-    background: var(--maincolor);
-    border-radius: var(--bd-rd-sm);
-    color: #fff;
-    cursor: pointer;
-    transition: var(--trans);
-    &:hover {
-        box-shadow: var(--shadow);
-        transition: var(--trans);
-    };
+  position: relative;
+  width: var(--ip-big-w);
+  height: var(--ip-big-h);
+  text-align: center;
+  background: var(--maincolor);
+  border-radius: var(--bd-rd-sm);
+  color: var(--white);
+  cursor: pointer;
+  transition: var(--trans);
+  &:hover {
+      box-shadow: var(--shadow);
+      transition: var(--trans);
+  };
+`;
+const Message = styled.div`
+  width: 400px;
+  height: 400px;
+  background: white;
+  margin: 20px 0;
 `;
 
-const Message = styled.div`
-    width: 400px;
-    height: 400px;
-    background: white;
-    margin: 20px 0;
-    /* background: none; */
-`
-
-const Write = ({ userData, setUserData, userInfo, dummyData, sharedId, setDummyData }) => {
+const Write = ({ userData, setUserData, dummyData, sharedId, setDummyData }) => {
   const [content, setContent] = useState('');
   const [nickname, setNickname] = useState('');
-  console.log(sharedId)
 
   const messageText = (e) => {
     setContent(e.target.value);
-    console.log(e.target.value)
   }
   const newNickname = (e) => {
     setNickname(e.target.value);
-    console.log(e.target.value);
   }
-  const test = () => {
-    console.log(dummyData.length + 1)
-    const dummyDataobj = {
+  const saveData = () => {
+    const dummyDataObj = {
       id: dummyData.length + 1,
       nickname,
       content
     }
     const newDummyData = [
       ...dummyData,
-      dummyDataobj
+      dummyDataObj
     ]
     localStorage.setItem('dummyData', JSON.stringify(newDummyData))
     setDummyData(JSON.parse(localStorage.getItem("dummyData")))
-    let index = 0
-    const userDataarr = userData.filter((e,i) => {
+    let index = 0;
+    const userDataArr = userData.filter((e,i) => {
       if(e.id === sharedId){
         index = i
       }
       return e.id === sharedId
     })
-    const userDataobj = {
-      id: userDataarr[0].id,
-      pw: userDataarr[0].pw,
-      field: userDataarr[0].field,
+    const userDataObj = {
+      id: userDataArr[0].id,
+      pw: userDataArr[0].pw,
+      field: userDataArr[0].field,
       contentLst: [
-        ...(userDataarr[0].contentLst),
+        ...(userDataArr[0].contentLst),
         dummyData.length
       ]
     }
 
-    const news = [...userData]
-    news[index] = userDataobj
-    console.log(news)
-    localStorage.setItem('userData',JSON.stringify(news))
+    const saveDatas = [...userData]
+    saveDatas[index] = userDataObj
+    localStorage.setItem('userData',JSON.stringify(saveDatas))
     setUserData(JSON.parse(localStorage.getItem('userData')))
-
   }
-  // nickname + content 데이터 받아서 dummyData.js 에 신규 아이디로 추가해야함
-  // userData.js 에서는 contentLst 에 추가된 신규 아이디 임의로? 넣어주고 그 field 에서 content 보여줘야함
 
   const [isOpen, setIsOpen] = useState(false)
   const openModalHandler = () => {
     setIsOpen(true)
   }
+  const editTextarea=()=>{
+    setIsOpen(false)
+  }
 
   const ReWrite = ({ content, nickname, sharedId }) => {
-    console.log(content)
-
     return (
-      <WriteWrap className='wrap' action='' method='get' onSubmit={(e) => e.preventDefault()}>
+      <FormCenter action='' method='get' onSubmit={(e) => e.preventDefault()}>
         <ModalBackDrop>
           <div className='backdrop'>
             <WriterNickname><span>{sharedId}</span></WriterNickname>
             <Message>{content}</Message>
             <div><span>From. {nickname}</span></div>
             <ButtonContainer>
-              <ModalBtn>수정하기</ModalBtn><ModalBtn onClick={test}>보내기</ModalBtn>
+              <ModalBtn onClick={editTextarea}>수정하기</ModalBtn><ModalBtn onClick={saveData}>보내기</ModalBtn>
             </ButtonContainer>
           </div>
         </ModalBackDrop>
-      </WriteWrap>
+      </FormCenter>
     )
   }
 
   return (
-    <div>
+    <div className='wrap'>
       <WriteForm>
         <Owner>To. {sharedId}</Owner>
         <WriteTextArea maxLength={300} value={content} onChange={messageText} />
         <NicknameBox>
           <NicknameLabel>From.</NicknameLabel>
-          <NicknameIp type='text' value={nickname} onChange={newNickname} />
+          <BaseInput type='text' value={nickname} onChange={newNickname} borderColor={'var(--white)'} background={'var(--white)'} color={'var(--black)'} />
         </NicknameBox>
-        <WriteBtn className='eff-raise' onClick={openModalHandler}>당근 보내기</WriteBtn>
+        <BaseButton className='eff-raise' onClick={openModalHandler} marginTop={'var(--gap-big)'}>당근 보내기</BaseButton>
       </WriteForm>
       {
         isOpen ? <ReWrite sharedId={sharedId} dummyData={dummyData} content={content} nickname={nickname} /> : null
