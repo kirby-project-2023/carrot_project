@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import { SmallButton } from '../styles/style';
+
 
 const ModalBackdrop = styled.div`
     width: 100%;
@@ -25,18 +27,6 @@ const ModalView = styled.div`
     border-radius: var(--bd-rd-big);
     > section {
         height: 90%;
-    } 
-    > button {
-        height: 10%;
-        width: var(--btn-sm-w);
-        background-color: var(--maincolor);
-        border-radius: var(--bd-rd-big);
-        margin-bottom: var(--gap-sm);
-        cursor: pointer;
-        //hover 색상 추가해도 되는지 확인하기(마음대로 추가해도 되는지) 
-        :hover{
-            background-color: var(--green);
-        }
     }
 `;
 const Content = styled.p`
@@ -58,8 +48,8 @@ const Letter = ({openModalHandler}) => { // 모달 창 열고 닫는거 인자�
                             어쩌구
                         </Content>
                     </section>
-                    <button 
-                    onClick={()=>openModalHandler(0)}>확인</button>
+                    <SmallButton 
+                    onClick={()=>openModalHandler(0)}>확인</SmallButton>
                 </ModalView>
             </ModalBackdrop>
         </>

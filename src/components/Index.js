@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import Help from './Help'
 import { Link } from 'react-router-dom';
 
 const Button = styled.button`
@@ -15,8 +14,6 @@ const Button = styled.button`
 
 const Container = styled.div`
     width: 100%;
-    height: 100vh;
-    background-color: var(--night);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -25,7 +22,6 @@ const Container = styled.div`
 const Main = styled.main`
     display: flex;
     width: 100%;
-    height: 100%;
     flex-grow: 3;
     align-items: center;
     justify-content: center;
@@ -34,15 +30,14 @@ const Main = styled.main`
 
 const Index = () => {
   return (
-
     <div className='wrap'>
-        <Container>
-            <Main>
-                <Link to="/login"><Button className='eff-fill'>로그인</Button></Link>
-                <Link to="join"><Button className='eff-fill'>회원가입</Button></Link>
-            </Main>
-            <Help/>
-        </Container>
+
+    <Container>
+        <Main>
+            <Link to="/login"><Button className='eff-fill'>로그인</Button></Link>
+            <Link to="/join"><Button className='eff-fill'>회원가입</Button></Link>
+        </Main>
+    </Container>
     </div>
   )
 }

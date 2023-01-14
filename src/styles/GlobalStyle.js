@@ -7,10 +7,9 @@ const GlobalStyle = createGlobalStyle`
   * {margin: 0;padding: 0;border: none;background: none;font-size: 100%;font: inherit;box-sizing: border-box;-webkit-tap-highlight-color: transparent;}
   ol,ul {list-style: none;} em {font-size: normal;} img {vertical-align: top;outline: none;}
   input,select,textarea,button {appearance: none;-webkit-appearance: none;outline: none;background: none;border: none;border-radius: 0;margin: 0;padding: 0;}
-  input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {background: transparent;background-clip: text;-webkit-background-clip: text;}
+  input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {background: transparent;background-clip: text;-webkit-background-clip: text; -webkit-text-fill-color: white;}
   textarea {resize: none;} ::placeholder {font: inherit;}
   a {text-decoration: none;color: inherit;}a:visited {background: none;}a:active {background: none;}
-
   /* =================================
   //* custom global
   ================================= */
@@ -26,15 +25,25 @@ const GlobalStyle = createGlobalStyle`
     'Noto Sans KR', 
     'Malgun Gothic', sans-serif;
   }
-  .wrap {
+  .app-wrap {
+    position: relative;
     max-width: 768px;
     width: 100%;
+    height: 100vh;
     margin: 0 auto;
+    padding: 0 var(--gap-md);
+    background: var(--night);
     @media (max-width: 768px){
       max-width: 100%;
-      padding: 0 var(--gap-md);
       overflow-x: hidden;
     }
+  }
+  .wrap {
+    width: 100%;
+    height: calc(100vh - 150px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .fz-base {
     font-family: var(--font-gangwon);

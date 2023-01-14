@@ -22,6 +22,7 @@ const HeaderContainer = styled.header`
 
 const Title = styled.h1`
   font-size: var(--fz-large);
+  color: var(--white);
 `;
 
 
@@ -41,14 +42,15 @@ const Header = ({userInfo}) => {
     }
   }, [userInfo])
   return (
-    <div className="wrap">
-      <HeaderContainer>
-        <MainLogo changeImg={changeImg} />
-        {/* 제목 */}
-        <Title>2023 커비의 당근심기</Title>
-        {/* 닉네임같은거 */}
-      </HeaderContainer>
-    </div>
+
+    <HeaderContainer>
+    <MainLogo changeImg={changeImg} />
+    {/* 제목 */}
+    <Title>2023 커비의 당근심기</Title>
+    {/* 닉네임같은거 */}
+    </HeaderContainer>
+    
+
   );
 };
 

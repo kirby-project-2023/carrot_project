@@ -1,61 +1,15 @@
-import React, { useState, Fragment } from 'react'
+import React, { useState } from 'react'
 // import userData from '../datas/userData.json'
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { BaseInputBox, BaseInput, BaseLabel, BaseButton } from '../styles/style';
 
 const LoginForm = styled.form`
     display: flex;
-    height: 100vh;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 `;
-const LoginBox = styled.div`
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin-bottom: var(--gap-md);
-`;
-const LoginIp = styled.input`
-    width: var(--ip-big-w);
-    height: var(--ip-big-h);
-    border: 1px solid var(--maincolor);
-    border-radius: var(--bd-rd-sm);
-    padding: 0 var(--gap-sm);
-    transition: var(--trans);
-    &:focus{
-        box-shadow: var(--shadow);
-        transition: var(--trans);
-    }
-`;
-const LoginLabel = styled.label`
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: var(--fz-md);
-    font-weight: bold;
-    text-transform: uppercase;
-    pointer-events: none;
-    color: var(--gray);
-    background: #fff;
-    transition: var(--trans);
-    ${LoginIp}:focus ~ &,
-    ${LoginIp}:valid ~ & {
-        top: 0;
-        font-size: var(--fz-sm);
-        transition: var(--trans);
-    };
-`;
-
-const Button = styled.button`
-    width: var(--btn-big-w);
-    height: var(--btn-big-h);
-    background-color: var(--green);
-    border-radius: var(--bd-rd-big);
-    border: none;
-    margin-top: var(--gap-sm);
-`
 
 const Login = ({ userData, setUserInfo }) => {
     const [inputId, setInputId] = useState('');
@@ -98,28 +52,26 @@ const Login = ({ userData, setUserInfo }) => {
     }
 
     return (
-        <Fragment>
-            <div className='wrap'>
-                <LoginForm>
-                    <LoginBox>
-                    <LoginIp type="text" id='ID' value={inputId} onChange={handleInputId} required/>
-                    <LoginLabel for="ID">아이디</LoginLabel>
-                    </LoginBox>
-                    {/* password 적는 input*/}
-                    <LoginBox>
-                    <LoginIp type="password" id='PASSWORD' value={inputPw} onChange={handleInputPw} required/>
-                    <LoginLabel for="">비밀번호</LoginLabel>
-                    </LoginBox>
-                    {/*버튼 -> 로그인 / 회원가입 버튼*/}
-                    <Button className='eff-fill' onClick={loginBtn}>로그인</Button>
-                    {/*회원가입 버튼 ->*/}
-                    <Link to="/join"><Button className='eff-fill'>회원가입</Button></Link>
-                    {/*삼항연산자 -> 어떤 상태 속성이 true 됐을 때만 회원가입 버튼이 뜨게 하자 */}
-                    {/* close 버튼 -> Index.js로 이동
-            <button>닫기</button> */}
-                </LoginForm>
-            </div>
-        </Fragment>
+        <div className='wrap'>
+            <LoginForm>
+                <BaseInputBox>
+                    <BaseInput type="text" id='ID' value={inputId} onChange={handleInputId} required/>
+                    <BaseLabel for="ID">아이디</BaseLabel>
+                </BaseInputBox>
+                {/* password 적는 input*/}
+                <BaseInputBox>
+                    <BaseInput type="password" id='PASSWORD' value={inputPw} onChange={handleInputPw} required/>
+                    <BaseLabel for="">비밀번호</BaseLabel>
+                </BaseInputBox>
+                {/*버튼 -> 로그인 / 회원가입 버튼*/}
+                <BaseButton onClick={loginBtn}>로그인</BaseButton>
+                {/*회원가입 버튼 ->*/}
+                <Link to="/join"><BaseButton>회원가입</BaseButton></Link>
+                {/*삼항연산자 -> 어떤 상태 속성이 true 됐을 때만 회원가입 버튼이 뜨게 하자 */}
+                {/* close 버튼 -> Index.js로 이동
+        <button>닫기</button> */}
+            </LoginForm>
+        </div>
     )
 }
 

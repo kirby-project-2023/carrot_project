@@ -1,7 +1,13 @@
 import { useState } from 'react'
 import styled from 'styled-components'
+import { SmallButton } from '../styles/style';
+
 
 const ModalButton = styled.button`
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    z-index: 100;
     width:50px;
     height: 50px;
     font-size: var(--fz-large);
@@ -45,18 +51,6 @@ const ModalView = styled.div`
     > section {
         height: 90%;
     } 
-    > button {
-        height: 10%;
-        width: var(--btn-sm-w);
-        background-color: var(--maincolor);
-        border-radius: var(--bd-rd-big);
-        margin-bottom: var(--gap-sm);
-        cursor: pointer;
-        //hover 색상 추가해도 되는지 확인하기(마음대로 추가해도 되는지) 
-        :hover{
-            background-color: var(--green);
-        }
-    }
 `;
 const Content = styled.p`
     margin: var(--gap-sm);
@@ -83,7 +77,7 @@ const Help = () => {
                                     어쩌구
                                 </Content>
                             </section>
-                            <button onClick={openModalHandler}>확인</button>
+                            <SmallButton onClick={openModalHandler}>확인</SmallButton>
                         </ModalView>
                     </ModalBackdrop> : null
                 }
