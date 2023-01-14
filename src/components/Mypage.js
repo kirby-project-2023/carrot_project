@@ -61,11 +61,14 @@ const Mypage = ({ userInfo, dummyData }) => {
         console.log(el)
         setIsOpen(el)
     }
+    if(userInfo.length === 0){
+        userInfo = JSON.parse(localStorage.getItem('userInfo'))
+    }
 
     const clickColorChange = (target) => {
         setClicked([...clicked, target]);
     }
-
+    
     return (
         <div className='wrap'>
             <MypageDiv>

@@ -36,6 +36,9 @@ function App() {
       localStorage.setItem("userData",JSON.stringify(userJson))
     }
     setUserData(JSON.parse(localStorage.getItem("userData")))
+    console.log(JSON.parse(localStorage.getItem('userInfo')))
+
+    setUserInfo(JSON.parse(localStorage.getItem('userInfo')))
   }, [])
 
   return (

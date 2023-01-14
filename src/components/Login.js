@@ -37,8 +37,9 @@ const Login = ({ userData, setUserInfo }) => {
         const arr = userData.filter(el => el.id === inputId && el.pw === inputPw);
         if (arr.length === 1) {
             navigate('/mypage');
+            localStorage.setItem("userInfo",JSON.stringify(arr))
+            setUserInfo(JSON.parse(localStorage.getItem('userInfo')))
             // 로그인 된 유저를 상태관리 추가하기
-            setUserInfo(arr)
             // 로그인하면 마이페이지에도 '***네 당근밭'처럼 로그인 정보가 들어있어야 함
             // 로그인 버튼 누르는 순간에 이걸 상태로 가지고 마이페이지에 넘겨줘야 마이페이지에서 닉네임을 쓸 수 있을 것 같음
             // 그래서 로그인 js와 마이페이지 js의 상위 컴포넌트인 App에서 상태관리를 해줘야 할 것 같음
