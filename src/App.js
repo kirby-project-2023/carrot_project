@@ -27,6 +27,15 @@ function App() {
     if (url.includes('id')) {
       setSharedId(url.slice(url.indexOf('=')+1))
     }
+    if(!localStorage.getItem("dummyData")){
+      localStorage.setItem("dummyData",JSON.stringify(dummyJson))
+    }
+    setDummyData(JSON.parse(localStorage.getItem("dummyData")))
+
+    if(!localStorage.getItem("userData")){
+      localStorage.setItem("userData",JSON.stringify(userJson))
+    }
+    setUserData(JSON.parse(localStorage.getItem("userData")))
   }, [])
 
   return (
@@ -40,7 +49,7 @@ function App() {
           <Route path="/join" element={<Join userData={userData} setUserData={setUserData} />} />
           <Route path="/login" element={<Login userData={userData} setUserInfo={setUserInfo} />} />
           <Route path="/mypage" element={<Mypage userInfo={userInfo} dummyData={dummyData} />} />
-          <Route path="/write" element={<Write userInfo={userInfo} dummyData={dummyData} sharedId={sharedId} />} />
+          <Route path="/write" element={<Write  userData={userData} setUserData={setUserData} userInfo={userInfo} dummyData={dummyData} setDummyData={setDummyData} sharedId={sharedId} />} />
         </Routes>
         <Footer />
         <Help/>
