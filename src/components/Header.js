@@ -13,14 +13,18 @@ const MainLogo = styled.img.attrs(props => ({
 `;
 
 const HeaderContainer = styled.header`
+  position: relative;
   width: 100%;
   height: 100px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 `;
 
 const Title = styled.h1`
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   font-size: var(--fz-large);
   color: var(--white);
 `;
@@ -44,10 +48,10 @@ const Header = ({userInfo}) => {
   return (
 
     <HeaderContainer>
-    <MainLogo changeImg={changeImg} />
-    {/* 제목 */}
-    <Title>2023 커비의 당근심기</Title>
-    {/* 닉네임같은거 */}
+      <MainLogo changeImg={changeImg} />
+      {/* 제목 */}
+      <Title>2023 커비의 당근심기</Title>
+      {/* 닉네임같은거 */}
     </HeaderContainer>
     
 

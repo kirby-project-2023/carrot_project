@@ -50,7 +50,7 @@ const Help = () => {
                 </ModalButton>
                 {isOpen ?
                     <ModalBack onClick={openModalHandler} >
-                        <ModalContent onClick={(event)=> event.stopPropagation()}>
+                        <ModalContent onClick={(event)=> event.stopPropagation()} height={'200px'}>
                             <section>
                                 <Content>
                                     어쩌구
