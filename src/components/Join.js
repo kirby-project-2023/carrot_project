@@ -2,38 +2,17 @@ import { clear } from '@testing-library/user-event/dist/clear';
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
-import { BaseInputBox, BaseInput, BaseLabel, BaseButton } from '../styles/style';
+import { FormCenter, BaseInputBox, BaseInput, BaseLabel, BaseButton } from '../styles/style';
+import { ModalWrap, ModalBack, ModalContent } from '../styles/style';
 
 // Private Check
-const PrivateWrap = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    width: 100%; height: 100%;
-    &:after {
-        content: '';
-        position: absolute;
-        left: 0; right: 0; top: 0; bottom: 0;
-        background: var(--night);
-    }
-`;
-const PrivateCont = styled.div`
-    position: relative;
-    border: 1px solid white;
-    padding: 50px 80px;
-    background: #fff;
-    position: relative;
-    z-index: 10;
-    border-radius: var(--bd-rd-big);
-`;
 const PrivateBox = styled.div`
     position: relative;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0 var(--gap-large);
+    margin-bottom: var(--gap-big);
 `;
 const PrivateCheck = styled.input`
     position: relative;
@@ -72,13 +51,12 @@ const PrivateLabel = styled.label`
 `;
 const PrivateTextarea = styled.div`
     border: 1px solid var(--gray);
-    width: var(--ip-big-w);
     height: calc(var(--ip-big-h) * 2);
     overflow-y: scroll;
     padding: var(--gap-sm);
     font-size: var(--fz-sm);
     line-height: 1.2;
-    background: #fff;
+    background: var(--white);
 `;
 const CloseCheckbox = styled.span`
     position: absolute;
@@ -86,17 +64,10 @@ const CloseCheckbox = styled.span`
     font-size: var(--fz-large);
     color: var(--night);
     cursor: pointer;
+    @media (max-width: 768px){
+        right: 15px; top: 15px;
+    }
 `;
-
-// Join Form
-const JoinForm = styled.form`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-`;
-
-
 
 
 const Join = ({ userData, setUserData }) => {
@@ -231,8 +202,9 @@ const Join = ({ userData, setUserData }) => {
 
     const PrivateData = () => {
         return (
-            <PrivateWrap>
-                <PrivateCont>
+            <ModalWrap>
+                <ModalBack />
+                <ModalContent>
                     <CloseCheckbox onClick={ClosePopup}>&times;</CloseCheckbox>
                     <PrivateBox>
                         <PrivateCheck type='checkbox' id='privateCheckAll' onChange={(event) => {
@@ -244,18 +216,18 @@ const Join = ({ userData, setUserData }) => {
                     {
                         privateData.map((data, id) => {
                             return (
-                                <div key={id}>
+                                <PrivateBox key={id}>
                                 <PrivateCheck type='checkbox' id={`ip${id}`} onChange={(event) => {
-                                handleSingleCheck(event.target.checked, data.id)}}
-                                checked={checkItems.includes(data.id) ? true : false}/>
+                                    handleSingleCheck(event.target.checked, data.id)}}
+                                    checked={checkItems.includes(data.id) ? true : false}/>
                                 <PrivateLabel for={`ip${id}`} >{data.label}</PrivateLabel>
                                 <PrivateTextarea>{data.text}</PrivateTextarea>
-                            </div>)   
+                            </PrivateBox>)
                         })
                     }
                     <BaseButton className={checkItems.length === privateData.length ? 'active' : 'deactive'} onClick={checkClick} marginTop={'var(--gap-sm)'}>개인정보동의완료</BaseButton>
-                </PrivateCont>
-            </PrivateWrap>
+                </ModalContent>
+            </ModalWrap>
         )
     }
 
@@ -264,7 +236,7 @@ const Join = ({ userData, setUserData }) => {
 
     return (
         <div className='wrap'>
-            <JoinForm action='' method='get' onSubmit={handleUserData}>
+            <FormCenter action='' method='get' onSubmit={handleUserData}>
                 <BaseInputBox>
                     <BaseInput type='text' title='joinId' id='joinId' onChange={handleIdInput('id')} value={userInfo.id} required />
                     <BaseLabel for='joinId'>아이디</BaseLabel>
@@ -283,7 +255,7 @@ const Join = ({ userData, setUserData }) => {
                 </BaseInputBox>
                 <BaseInputBox><div>{isIncorrect ? '비밀번호가 같지 않습니다.' : '' }</div></BaseInputBox>
                 <BaseButton type='submit' onClick={checkClick} >{checkItems.length === privateData.length ? '가입하기' : '개인정보동의'}</BaseButton>
-            </JoinForm>
+            </FormCenter>
             {
                 checkPopup ? <PrivateData/> : null
             }
