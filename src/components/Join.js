@@ -115,11 +115,13 @@ const Join = ({ userData, setUserData }) => {
             //     field,
             //     pw
             // })
-            setUserData([...userData, {
+            const updatedUserData = [...userData, {
                 id,
                 field,
                 pw
-            }])
+            }]
+            localStorage.setItem('userData', JSON.stringify(updatedUserData))
+            setUserData(JSON.parse(localStorage.getItem('userData')))
             initState()
             navigate('/login')
         }

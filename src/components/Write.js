@@ -90,6 +90,7 @@ const Message = styled.div`
 `;
 
 const Write = ({ userData, setUserData, dummyData, sharedId, setDummyData }) => {
+  console.log(userData)
   const [content, setContent] = useState('');
   const [nickname, setNickname] = useState('');
 
@@ -122,12 +123,12 @@ const Write = ({ userData, setUserData, dummyData, sharedId, setDummyData }) => 
       id: userDataArr[0].id,
       pw: userDataArr[0].pw,
       field: userDataArr[0].field,
-      contentLst: [
-        ...(userDataArr[0].contentLst),
-        dummyData.length
+      contentLst: !userDataArr[0].contentLst ? [] : [
+        ...userDataArr[0].contentLst,
+        dummyDataObj.id
       ]
     }
-
+    console.log(userDataArr[0].contentLst)
     const saveDatas = [...userData]
     saveDatas[index] = userDataObj
     localStorage.setItem('userData',JSON.stringify(saveDatas))
