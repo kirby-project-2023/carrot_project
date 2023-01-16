@@ -20,13 +20,13 @@ function App() {
   const [dummyData, setDummyData] = useState(dummyJson)
   const [userInfo, setUserInfo] = useState([])
   const [sharedId, setSharedId] = useState('')
-
-
+  
   useEffect(() => {
     const url = String(window.location.href)
     if (url.includes('id')) {
-      setSharedId(url.slice(url.indexOf('=')+1))
+      setSharedId(decodeURI(url.slice(url.indexOf('=')+1)))
     }
+    // 한글 아이디 받아올 수 있도록 디코딩
     if(!localStorage.getItem("dummyData")){
       localStorage.setItem("dummyData",JSON.stringify(dummyJson))
     }

@@ -75,8 +75,10 @@ const Join = ({ userData, setUserData }) => {
         id: '',
         field: '',
         pw: '',
-        pwConfirm: ''
+        pwConfirm: '',
+        contentLst: []
     })
+    // 회원가입시 contentLst 초기화 해두기
     const [ isIncorrect, setIsIncorrect ] = useState(false)
     const [ checkPopup, setCheckPopup ] = useState(false);
     const handleIdInput = (key) => (event) => {
@@ -104,7 +106,7 @@ const Join = ({ userData, setUserData }) => {
     
     const handleUserData = (event) => {
         event.preventDefault()
-        const { id ,pw, field } = userInfo
+        const { id ,pw, field, contentLst } = userInfo
         if (isIncorrect || checkUserData()) {
         // 회원가입 반려
             alert('중복된 Id 이거나 비밀번호가 유효하지 않습니다.')
@@ -118,7 +120,8 @@ const Join = ({ userData, setUserData }) => {
             const updatedUserData = [...userData, {
                 id,
                 field,
-                pw
+                pw,
+                contentLst
             }]
             localStorage.setItem('userData', JSON.stringify(updatedUserData))
             setUserData(JSON.parse(localStorage.getItem('userData')))

@@ -78,7 +78,8 @@ const Mypage = ({ userInfo, dummyData }) => {
             <MypageDiv>
                 <TitleDiv>2023 {userInfo[0].field} 달토끼네 당근밭</TitleDiv>
                 <LetterArea>
-                    {userInfo[0].contentLst === undefined ?
+                    {userInfo[0].contentLst.length === 0 ?
+                    // 회원 가입한 유저 데이터에 contentLst 속성을 빈 배열로 초기화해둬서 분기 조건 수정했습니다. - 혜림
                         <NothingDiv>친구들에게 당근을 요청하세요!</NothingDiv>
                         : userInfo[0].contentLst.map(el => {
                             return <>
