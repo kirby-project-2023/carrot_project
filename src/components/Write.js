@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
 import { FormCenter,BaseInput,BaseButton } from '../styles/style';
+import {useNavigate} from 'react-router-dom'
 
 const WriteForm = styled.div`
   width: 100%;
@@ -90,10 +91,10 @@ const Message = styled.div`
 `;
 
 const Write = ({ userData, setUserData, dummyData, sharedId, setDummyData }) => {
-  console.log(userData)
+  
   const [content, setContent] = useState('');
   const [nickname, setNickname] = useState('');
-
+  const navigate = useNavigate()
   const messageText = (e) => {
     setContent(e.target.value);
   }
@@ -123,7 +124,7 @@ const Write = ({ userData, setUserData, dummyData, sharedId, setDummyData }) => 
       id: userDataArr[0].id,
       pw: userDataArr[0].pw,
       field: userDataArr[0].field,
-      contentLst: !userDataArr[0].contentLst ? [] : [
+      contentLst: !userDataArr[0].contentLst ? [dummyDataObj.id] : [
         ...userDataArr[0].contentLst,
         dummyDataObj.id
       ]
@@ -134,7 +135,7 @@ const Write = ({ userData, setUserData, dummyData, sharedId, setDummyData }) => 
     localStorage.setItem('userData',JSON.stringify(saveDatas))
     setUserData(JSON.parse(localStorage.getItem('userData')))
   }
-
+  
   const [isOpen, setIsOpen] = useState(false)
   const openModalHandler = () => {
     setIsOpen(true)
@@ -142,7 +143,7 @@ const Write = ({ userData, setUserData, dummyData, sharedId, setDummyData }) => 
   const editTextarea=()=>{
     setIsOpen(false)
   }
-
+  
   const ReWrite = ({ content, nickname, sharedId }) => {
     return (
       <FormCenter action='' method='get' onSubmit={(e) => e.preventDefault()}>
@@ -152,7 +153,7 @@ const Write = ({ userData, setUserData, dummyData, sharedId, setDummyData }) => 
             <Message>{content}</Message>
             <div><span>From. {nickname}</span></div>
             <ButtonContainer>
-              <ModalBtn onClick={editTextarea}>수정하기</ModalBtn><ModalBtn onClick={saveData}>보내기</ModalBtn>
+              <ModalBtn onClick={editTextarea}>수정하기</ModalBtn><ModalBtn onClick={() => {saveData(); navigate('/')}}>보내기</ModalBtn>
             </ButtonContainer>
           </div>
         </ModalBackDrop>
