@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import Letter from './Letter';
+import carrot from '../img/carrot.png';
+import carrot_ground from '../img/carrot_in_ground.png';
+import gold_carrot from '../img/gold_carrot.png';
+import gold_carrot_ground from '../img/gold_carrot_ground.png';
 
 //닉네임네 당근밭 띄우기
 // 아이디에 맞는 편지 밭에 뿌리기
@@ -20,6 +24,7 @@ const MypageDiv = styled.div`
 const TitleDiv = styled.div`
     font-size: var(--fz-large);
     color: var(--white);
+    margin: var(--gap-big);
 `
 
 const NothingDiv = styled.div`
@@ -37,20 +42,11 @@ const LetterArea = styled.div`
     border-radius: var(--bd-rd-big);
 `
 
-const CarrotBtn = styled.button`
-    background-color: var(--carrot);
-    color: #fff;
-    font-size: var(--fz-big);
-    font-family: var(--font-gangwon);
+const CarrotImg = styled.img`
     width: var(--btn-sm-w);
     height: var(--btn-sm-w);
-    border-radius: 50%;
-    border-style: none;
     margin: var(--gap-big);
     cursor: pointer;
-    &.clicked {
-        background-color: var(--green);
-    }
 `
 
 const Mypage = ({ userInfo, dummyData }) => {
@@ -61,14 +57,22 @@ const Mypage = ({ userInfo, dummyData }) => {
         console.log(el)
         setIsOpen(el)
     }
-    if(userInfo.length === 0){
+    if (userInfo.length === 0) {
         userInfo = JSON.parse(localStorage.getItem('userInfo'))
     }
 
     const clickColorChange = (target) => {
         setClicked([...clicked, target]);
     }
-    
+
+    const data = userInfo[0].contentLst.map(el=>{
+        return dummyData[el-1]}
+    )
+
+    const max = data.map(el=>el.content.length);
+    const maxNum = Math.max(...max)
+    const longLetter = max.indexOf(maxNum); //longletter는 가장 긴 편지의 인덱스
+
     return (
         <div className='wrap'>
             <MypageDiv>
@@ -78,12 +82,16 @@ const Mypage = ({ userInfo, dummyData }) => {
                         <NothingDiv>친구들에게 당근을 요청하세요!</NothingDiv>
                         : userInfo[0].contentLst.map(el => {
                             return <>
-                                    <CarrotBtn
-                                        className={`${clicked.includes(el) ? "clicked" : ""}`}
-                                        onClick={() => {openModalHandler(el); clickColorChange(el)}} key={el}>
-                                        {el}
-                                    </CarrotBtn>
-                                {isOpen === el ? <Letter openModalHandler={openModalHandler} dummyData={dummyData}></Letter> : null}
+                                {/*지금은 className으로 삼항 연산자를 썼는데, 이미지로 하려면 CarrotBtn자체에서 삼항 연산자*/}
+                                {clicked.includes(el)
+                                    ? ((longLetter+1) === el
+                                    ? <CarrotImg src={gold_carrot} alt='gold_carrot'onClick={() => {openModalHandler(el); clickColorChange(el)}} key={el}/>
+                                    : <CarrotImg src={carrot} alt='carrot' onClick={() => {openModalHandler(el); clickColorChange(el)}} key={el}/>)
+                                    : ((longLetter+1) === el
+                                    ? <CarrotImg src={gold_carrot_ground} alt='gold_carrot_ground'onClick={() => {openModalHandler(el); clickColorChange(el)}} key={el}/>
+                                    : <CarrotImg src={carrot_ground} alt="carrot_ground" onClick={() => {openModalHandler(el); clickColorChange(el)}} key={el}/>)
+                                }
+                                {isOpen === el ? <Letter openModalHandler={openModalHandler} dummyData={dummyData} isOpen={isOpen}></Letter> : null}
                             </>
                         })}
                 </LetterArea>
