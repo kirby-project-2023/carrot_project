@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components'
 import Help from './Help'
-import userData from '../datas/userData.json'
 
 const Button = styled.button`
     width: var(--btn-big-w);
@@ -33,7 +32,7 @@ const Main = styled.main`
     flex-direction: column;
 `
 
-const Index2 = ({ sharedId }) => {
+const Index2 = ({ sharedId, userData }) => {
   const [idCheck, setIdCheck] = useState(false)
   useEffect(() => {
     if (userData.filter(e => e.id === sharedId).length === 1) {

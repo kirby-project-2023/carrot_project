@@ -33,19 +33,21 @@ const Content = styled.p`
     margin: var(--gap-sm);
 `
 const NickName = styled.div`
+    margin-top: var(--gap-big);
 `
 
-const Letter = ({openModalHandler}) => { // 모달 창 열고 닫는거 인자로 받기
+const Letter = ({openModalHandler, dummyData, isOpen}) => { // 모달 창 열고 닫는거 인자로 받기
+    const arr = dummyData.filter(e=>e.id===isOpen)
     return (
         <>
             <ModalBackdrop>
                 <ModalView>
                     <NickName>
-                        저쩌구
+                        FROM. {arr[0].nickname}
                     </NickName>
                     <section>
                         <Content>
-                            어쩌구
+                            {arr[0].content}
                         </Content>
                     </section>
                     <SmallButton 
