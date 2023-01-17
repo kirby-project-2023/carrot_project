@@ -5,8 +5,9 @@ import Logo1 from '../img/Logo1.png'
 import Logo2 from '../img/Logo2.png'
 import Logo3 from '../img/Logo3.png'
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+
 
 const MainLogo = styled.img.attrs(props => ({
   src: props.changeImg
@@ -63,22 +64,23 @@ const Header = ({ userInfo }) => {
     } else if (userInfo[0].contentLst.length <= 12) {
       setChangeImg(Logo3)
     }
-  }, [userInfo]);
-
-  const logoutHandler = () => {
-    localStorage.removeItem('userInfo');
-    window.location.href = 'http://localhost:3000/';
+  }, [userInfo])
+  const logoutHandler = () =>{
+    localStorage.removeItem('userInfo')
+    window.location.href = 'http://localhost:3000/'
   }
-
+  const mypageURL = 'http://localhost:3000/mypage'
   return (
     <HeaderContainer>
-      <Link to="/">
-        <MainLogo changeImg={changeImg} />
-      </Link>
-      <Title>2023 커비의 당근심기</Title>
-        {userInfo[0] === undefined ? null : (
-          <Button onClick={logoutHandler}>LOGOUT<FontAwesomeIcon icon={faRightFromBracket} /></Button>
-        )}
+      <Link to="/"><MainLogo changeImg={changeImg} /></Link>
+      <Title>
+        {window.location.href === mypageURL ?`2023 ${userInfo[0].field} 달토끼네 당근밭` : `2023 커비의 당근심기`}
+      </Title>
+      {userInfo[0] === undefined ? null :
+      (<Button onClick={logoutHandler}> 
+          LOGOUT<FontAwesomeIcon icon={faRightFromBracket} />
+      </Button>)}
+
     </HeaderContainer>
   );
 };
