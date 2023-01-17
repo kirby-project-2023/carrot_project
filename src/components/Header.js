@@ -65,9 +65,9 @@ const Header = ({ userInfo }) => {
   }, [userInfo])
   const logoutHandler = () =>{
     localStorage.removeItem('userInfo')
-    window.location.href = 'http://localhost:3000/'
+    window.location.href = '/'
   }
-  const mypageURL = 'http://localhost:3000/mypage'
+  const mypageURL = '/mypage'
   console.log(userInfo)
   return (
     <HeaderContainer>
