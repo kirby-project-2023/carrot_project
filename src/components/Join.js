@@ -129,8 +129,6 @@ const Join = ({ userData, setUserData }) => {
             navigate('/login')
         }
     }
-    // field 지정을 회원가입에서 해야하는지 확인하기 !
-
     const initState = () => {
         setUserInfo({
             id: '',
