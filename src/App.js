@@ -26,6 +26,12 @@ function App() {
       setSharedId(decodeURI(url.slice(url.indexOf('=')+1)))
     }
     // 한글 아이디 받아올 수 있도록 디코딩
+    if(!localStorage.getItem("dummyData")){
+      localStorage.setItem("dummyData",JSON.stringify(dummyData))
+    }
+    if(!localStorage.getItem("userData")){
+      localStorage.setItem("userData",JSON.stringify(userData))
+    }
   }, [])
 
   return (
