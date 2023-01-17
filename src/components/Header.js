@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 
-
 const MainLogo = styled.img.attrs(props => ({
   src: props.changeImg
 }))`
@@ -52,7 +51,6 @@ const Button = styled.button`
 
 const Header = ({ userInfo }) => {
   const [changeImg, setChangeImg] = useState(LogoDefault);
-
   useEffect(() => {
     if (userInfo.length === 0 || userInfo[0].contentLst === undefined) {
       setChangeImg(LogoDefault)
@@ -70,7 +68,7 @@ const Header = ({ userInfo }) => {
     window.location.href = 'http://localhost:3000/'
   }
   const mypageURL = 'http://localhost:3000/mypage'
-
+  console.log(userInfo)
   return (
     <HeaderContainer>
       <Link to="/"><MainLogo changeImg={changeImg} /></Link>
@@ -81,8 +79,7 @@ const Header = ({ userInfo }) => {
       (<Button onClick={logoutHandler}> 
           LOGOUT<FontAwesomeIcon icon={faRightFromBracket} />
       </Button>)}
-
-    </HeaderContainer>
+      </HeaderContainer>
   );
 };
 
