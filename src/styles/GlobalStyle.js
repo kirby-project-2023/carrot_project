@@ -33,6 +33,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0 auto;
     padding: 0 var(--gap-md);
     background: var(--night);
+    background: linear-gradient(335deg, rgba(56,59,98,1) 0%, rgba(56,59,98,1) 70%, rgba(77,77,77,1) 100%);
     @media (max-width: 768px){
       max-width: 100%;
       overflow-x: hidden;

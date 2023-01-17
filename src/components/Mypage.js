@@ -18,7 +18,7 @@ const MypageDiv = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    background-color: var(--night);
+    /* background-color: var(--night); */
 `;
 
 const TitleDiv = styled.div`
