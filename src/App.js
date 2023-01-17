@@ -16,27 +16,16 @@ import Help from './components/Help'
 
 function App() {
   // 여기 수정이 되어야 한다
-  const [userData, setUserData] = useState(userJson)
-  const [dummyData, setDummyData] = useState(dummyJson)
-  const [userInfo, setUserInfo] = useState([])
+  const [userData, setUserData] = useState(JSON.parse(localStorage.getItem('userData')) || userJson)
+  const [dummyData, setDummyData] = useState(JSON.parse(localStorage.getItem('dummyData')) || dummyJson)
   const [sharedId, setSharedId] = useState('')
-  
+  const [userInfo, setUserInfo] = useState(JSON.parse(localStorage.getItem('userInfo')) || [])
   useEffect(() => {
     const url = String(window.location.href)
     if (url.includes('id')) {
       setSharedId(decodeURI(url.slice(url.indexOf('=')+1)))
     }
     // 한글 아이디 받아올 수 있도록 디코딩
-    if(!localStorage.getItem("dummyData")){
-      localStorage.setItem("dummyData",JSON.stringify(dummyJson))
-    }
-    setDummyData(JSON.parse(localStorage.getItem("dummyData")))
-
-    if(!localStorage.getItem("userData")){
-      localStorage.setItem("userData",JSON.stringify(userJson))
-    }
-    setUserData(JSON.parse(localStorage.getItem("userData")))
-    setUserInfo(JSON.parse(localStorage.getItem('userInfo'))||[])
   }, [])
 
   return (

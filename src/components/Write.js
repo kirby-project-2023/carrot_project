@@ -138,6 +138,7 @@ const Write = ({ userData, setUserData, dummyData, sharedId, setDummyData }) => 
   }
   const saveData = () => {
     setIsSend(true)
+    console.log(isSend)
     const dummyDataObj = {
       id: dummyData.length + 1,
       nickname,
@@ -179,14 +180,24 @@ const Write = ({ userData, setUserData, dummyData, sharedId, setDummyData }) => 
   const editTextarea=()=>{
     setIsOpen(false)
   }
-  
-  const ReWrite = ({ content, nickname }) => {
+
+  const CheckModal = ({ isSend, setIsSend }) => {
     useEffect(() => {
       setTimeout(() => {
         setIsSend(false)
         navigate('/')
       }, 3000)
     }, [])
+    return (
+      <div className='complete'>
+      친구의 당근 밭에 당근을 심었어요 ! 🥕🐰🥕
+      <br />
+      <span>잠시 후 메인 페이지로 이동해요.</span>
+    </div>
+    )
+  }
+  
+  const ReWrite = ({ content, nickname, isSend, setIsSend }) => {
     return (
       <FormCenter action='' method='get' onSubmit={(e) => e.preventDefault()}>
         <ModalBackDrop>
@@ -199,12 +210,7 @@ const Write = ({ userData, setUserData, dummyData, sharedId, setDummyData }) => 
               <ModalBtn onClick={editTextarea}>수정하기</ModalBtn><ModalBtn onClick={() => {saveData();}}>보내기</ModalBtn>
             </ButtonContainer>
           </div>
-           : 
-          <div className='complete'>
-            친구의 당근 밭에 당근을 심었어요 ! 🥕🐰🥕
-            <br />
-            <span>잠시 후 메인 페이지로 이동해요.</span>
-          </div>
+           : <CheckModal setIsSend={setIsSend}/>
            }
         </ModalBackDrop>
       </FormCenter>
@@ -224,7 +230,7 @@ const Write = ({ userData, setUserData, dummyData, sharedId, setDummyData }) => 
         <BaseButton className='eff-raise' onClick={openModalHandler} marginTop={'var(--gap-big)'}>당근 보내기</BaseButton>
       </WriteForm>
       {
-        isOpen ? <ReWrite sharedId={sharedId} dummyData={dummyData} content={content} nickname={nickname} /> : null
+        isOpen ? <ReWrite sharedId={sharedId} dummyData={dummyData} content={content} nickname={nickname} isSend={isSend} setIsSend={setIsSend}/> : null
       }
     </div>
   )
