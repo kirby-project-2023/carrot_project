@@ -16,7 +16,7 @@ import Help from './components/Help'
 
 function App() {
   // 여기 수정이 되어야 한다
-  const [userData, setUserData] = useState(JSON.parse(localStorage.getItem('dummyData')) || userJson)
+  const [userData, setUserData] = useState(JSON.parse(localStorage.getItem('userData')) || userJson)
   const [dummyData, setDummyData] = useState(JSON.parse(localStorage.getItem('dummyData')) || dummyJson)
   const [sharedId, setSharedId] = useState('')
   const [userInfo, setUserInfo] = useState(JSON.parse(localStorage.getItem('userInfo')) || [])
