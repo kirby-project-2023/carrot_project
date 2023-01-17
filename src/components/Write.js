@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import { FormCenter,BaseInput,BaseButton } from '../styles/style';
 import {useNavigate} from 'react-router-dom'
@@ -47,20 +47,43 @@ const ModalBackDrop = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  .backdrop {
+  .message {
     background: var(--green);
+    border-radius: 15px;
     padding: 10px;
+    height: max-content;
+    color: white;
     display:flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    flex-direction: column;
+   align-items: center;
+   justify-content: space-around;
+   & div.message {
+    margin: 10px;
+    padding: 0px;
+    font-size: 20px;
+   }
+  }
+  & div.complete {
+    width: 400px;
+    height: 300px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: var(--green);
+    font-size: larger;
+    & span {
+      font-size: smaller;
+      color: white;
+      margin: 10px;
+    }
   }
 `;
 const WriterNickname = styled.div`
-  width: 200px;
-  height: 50px;
-  background: var(--silver);
   text-align: center;
+  font-size: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -85,23 +108,36 @@ const ModalBtn = styled.button`
 `;
 const Message = styled.div`
   width: 400px;
-  height: 400px;
-  background: white;
+  height: 200px;
+  background: rgba( 255, 255, 255, 0.2 );
+  padding: 10px;
+  overflow: scroll;
   margin: 20px 0;
+  text-align: center;
 `;
+
 
 const Write = ({ userData, setUserData, dummyData, sharedId, setDummyData }) => {
   
   const [content, setContent] = useState('');
   const [nickname, setNickname] = useState('');
+  const sharedUserField = userData.filter((el) => el.id === sharedId)[0].field
+  // 당근 밭 주인의 닉네임
   const navigate = useNavigate()
+  const [isSend, setIsSend] = useState(false)
+
   const messageText = (e) => {
-    setContent(e.target.value);
+    let contents = e.target.value
+    contents = contents.replaceAll('\r\n', '<br>')
+    setContent(contents)
+    console.log(contents)
   }
+  // 엔터키 변경해서 받아야 함
   const newNickname = (e) => {
     setNickname(e.target.value);
   }
   const saveData = () => {
+    setIsSend(true)
     const dummyDataObj = {
       id: dummyData.length + 1,
       nickname,
@@ -144,18 +180,32 @@ const Write = ({ userData, setUserData, dummyData, sharedId, setDummyData }) => 
     setIsOpen(false)
   }
   
-  const ReWrite = ({ content, nickname, sharedId }) => {
+  const ReWrite = ({ content, nickname }) => {
+    useEffect(() => {
+      setTimeout(() => {
+        setIsSend(false)
+        navigate('/')
+      }, 3000)
+    }, [])
     return (
       <FormCenter action='' method='get' onSubmit={(e) => e.preventDefault()}>
         <ModalBackDrop>
-          <div className='backdrop'>
-            <WriterNickname><span>{sharedId}</span></WriterNickname>
-            <Message>{content}</Message>
-            <div><span>From. {nickname}</span></div>
+          {!isSend ?
+          <div className='message'>
+            <WriterNickname><span>{`To. ${sharedUserField}`}</span></WriterNickname>
+            <Message><pre>{content}</pre></Message>
+            <div className='message'><span>From. {nickname}</span></div>
             <ButtonContainer>
-              <ModalBtn onClick={editTextarea}>수정하기</ModalBtn><ModalBtn onClick={() => {saveData(); navigate('/')}}>보내기</ModalBtn>
+              <ModalBtn onClick={editTextarea}>수정하기</ModalBtn><ModalBtn onClick={() => {saveData();}}>보내기</ModalBtn>
             </ButtonContainer>
           </div>
+           : 
+          <div className='complete'>
+            친구의 당근 밭에 당근을 심었어요 ! 🥕🐰🥕
+            <br />
+            <span>잠시 후 메인 페이지로 이동해요.</span>
+          </div>
+           }
         </ModalBackDrop>
       </FormCenter>
     )
@@ -164,7 +214,8 @@ const Write = ({ userData, setUserData, dummyData, sharedId, setDummyData }) => 
   return (
     <div className='wrap'>
       <WriteForm>
-        <Owner>To. {sharedId}</Owner>
+        <Owner>To. {sharedUserField}</Owner>
+        {/* 받는 사람 (기존) 아이디 -> (변경)닉네임 */}
         <WriteTextArea maxLength={300} value={content} onChange={messageText} />
         <NicknameBox>
           <NicknameLabel>From.</NicknameLabel>

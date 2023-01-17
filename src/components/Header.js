@@ -70,6 +70,7 @@ const Header = ({ userInfo }) => {
     window.location.href = 'http://localhost:3000/'
   }
   const mypageURL = 'http://localhost:3000/mypage'
+
   return (
     <HeaderContainer>
       <Link to="/"><MainLogo changeImg={changeImg} /></Link>
