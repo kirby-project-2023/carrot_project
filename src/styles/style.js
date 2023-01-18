@@ -103,15 +103,15 @@ export const ModalBack = styled.div`
 export const ModalContent = styled.div`
   position: absolute;
   left: 50%; top: 50%; transform: translate(-50%,-50%);
-  background: var(--white);
+  background: ${(props) => props.background || 'var(--white)'};
   border-radius: var(--bd-rd-big);
-  width: 50%; 
+  width: ${(props) => props.width || '50%'};; 
   z-index: 10;
   display: flex; justify-content: center; align-items: center;
   flex-direction: column;
   height: ${(props) => props.height || '80%'};
   @media (max-width: 768px){
-    width: 80%;
+    width: '80%';
     height: ${(props) => props.height || '80vh'};
   }
 `;
