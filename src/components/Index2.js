@@ -15,8 +15,6 @@ const Button = styled.button`
 
 const Container = styled.div`
     width: 100%;
-    height: 100vh;
-    background-color: var(--night);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -34,25 +32,41 @@ const Main = styled.main`
 
 const Index2 = ({ sharedId, userData }) => {
   const [idCheck, setIdCheck] = useState(false)
+  const [lengthOver, setLengthOver] = useState(false)
   useEffect(() => {
-    if (userData.filter(e => e.id === sharedId).length === 1) {
+    let receiver = userData.filter(e => e.id === sharedId)
+    if ( receiver.length === 1 ){
       setIdCheck(true)
+      if(receiver[0].contentLst.length > 12) {
+        setLengthOver(true)
+      }
       // alert('유효하지 않은 접근입니다')
       // window.location.href = 'http://localhost:3000/'
       console.log(userData)
     }
   }, [])
   const idCheckHandler = () =>{
-    alert('유효하지 않은 접근입니다')
+    alert('유효하지 않은 접근입니다.')
   }
+  const LengthCheck=()=>{
+    alert('친구의 당근 밭이 가득 찼어요.')
+  }
+
+
+
   return (
     <div className='wrap'>
       <Container>
         <Main>
           <Link to="/login"><Button className='eff-fill'>로그인</Button></Link>
           <Link to="/join"><Button className='eff-fill'>회원가입</Button></Link>
-          {idCheck ?<Link to="/write"><Button className='eff-fill'>편지쓰기</Button></Link>:
-          <Link to="/"><Button onClick={idCheckHandler} className='eff-fill'>편지쓰기</Button></Link>}
+          {
+            idCheck ?
+              lengthOver ? 
+              <Link to="/"><Button className='eff-fill' onClick={LengthCheck}>편지쓰기</Button></Link>
+              : <Link to="/write"><Button className='eff-fill'>편지쓰기</Button></Link>
+            : <Link to="/"><Button onClick={idCheckHandler} className='eff-fill'>편지쓰기</Button></Link>
+          }
         </Main>
         <Help />
       </Container>

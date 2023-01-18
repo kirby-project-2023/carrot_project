@@ -79,6 +79,7 @@ export const SmallButton = styled.button`
   &:hover{
     background: ${(props) => props.hoverBg || 'var(--maincolor)'};
     transition: var(--trans);
+    box-shadow: ${(props) => props.shadow || 'none'};
   }
 `;
 
