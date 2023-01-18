@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
-import { FormCenter,BaseInput,BaseButton } from '../styles/style';
+import { FormCenter,BaseInput,BaseButton,SmallButton } from '../styles/style';
 import {useNavigate} from 'react-router-dom'
 
 const WriteForm = styled.div`
@@ -111,7 +111,7 @@ const Message = styled.div`
   height: 200px;
   background: rgba( 255, 255, 255, 0.2 );
   padding: 10px;
-  overflow: scroll;
+  overflow: auto;
   margin: 20px 0;
   text-align: center;
 `;
@@ -207,7 +207,7 @@ const Write = ({ userData, setUserData, dummyData, sharedId, setDummyData }) => 
             <Message><pre>{content}</pre></Message>
             <div className='message'><span>From. {nickname}</span></div>
             <ButtonContainer>
-              <ModalBtn onClick={editTextarea}>수정하기</ModalBtn><ModalBtn onClick={() => {saveData();}}>보내기</ModalBtn>
+              <SmallButton onClick={editTextarea} style={{marginRight : '10px'}} background='var(--maincolor)' hoverBg='var(--yellow)' shadow='var(--shadow)'>수정하기</SmallButton><SmallButton onClick={() => {saveData();}} background='var(--maincolor)' hoverBg='var(--yellow)' shadow='var(--shadow)'>보내기</SmallButton>
             </ButtonContainer>
           </div>
            : <CheckModal setIsSend={setIsSend}/>
