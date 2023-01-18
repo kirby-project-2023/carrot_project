@@ -12,6 +12,8 @@ const MypageDiv = styled.div`
     align-items: center;
     justify-content: space-evenly;
     /* background-color: var(--night); */
+    width: 100%;
+    height: 100%;
 `;
 
 const TitleDiv = styled.div`
@@ -31,7 +33,7 @@ const LetterArea = styled.div`
     justify-content: center;
     align-items: center;
     width: 80%;
-    height: 70vh;
+    height: 80%;
     border-radius: var(--bd-rd-big);
 `
 
@@ -40,44 +42,47 @@ const CarrotImg = styled.img`
     height: var(--btn-sm-w);
     margin: var(--gap-big);
     cursor: pointer;
+    @media (max-width: 540px){
+    width: 50px;
+    height: 50px;
+    }
 `
 
-const Mypage = ({ userInfo, dummyData, setUserInfo }) => {
+const Mypage = ({ userInfo, dummyData }) => {
     const [isOpen, setIsOpen] = useState('')
     // localstorage에서 clicked를 가져옴
     // localstorage에 clicked가 있을 때는(이미 편지 몇 개 읽은 상태에서 새로고침) 그 값을 상태의 초기값으로 사용
     // localstorage에 clicked가 없을 때는(편지 안 읽었는데 렌더링이 되는 상태) 빈 배열을 상태의 초기값으로 사용
-    const [clicked, setClicked] = useState(()=>{
-            const clickedData = localStorage.getItem("clicked");
-            if (clickedData !== null) {
-                return JSON.parse(clickedData);
-            } else {
-                return [];
-            }
+    const [clicked, setClicked] = useState(() => {
+        const clickedData = localStorage.getItem("clicked");
+        if (clickedData !== null) {
+            return JSON.parse(clickedData);
+        } else {
+            return [];
+        }
     })
 
     // 처음 렌더링될 때 clicked를 localstorage에서 가져온 clicked 값으로 사용 -> 밑에 삼항 연산자에서 사용
-    useEffect(()=>{
-        // const userData = localStorage.getItem("userInfo")
-        // setUserInfo(JSON.parse(userData));
+    useEffect(() => {
         const clickData = localStorage.getItem("clicked")
-        if(clickData){
+        if (clickData) {
             setClicked(JSON.parse(clickData))
         }
-    },[]);
+    }, []);
 
     // clicked 상태가 바뀔 때마다 localstorage에 바뀐 clicked값을 저장
-    useEffect(()=>{
-        localStorage.setItem("clicked",JSON.stringify(clicked))
-    },[clicked]);
+    useEffect(() => {
+        localStorage.setItem("clicked", JSON.stringify(clicked))
+    }, [clicked]);
 
     const openModalHandler = (el) => {
         console.log(el)
         setIsOpen(el)
     }
-    if (userInfo.length === 0) {
-        userInfo = JSON.parse(localStorage.getItem('userInfo'))
-    }
+    // 최종완성 때 주석 지우기!
+    // if (userInfo.length === 0) {
+    //     userInfo = JSON.parse(localStorage.getItem('userInfo'))
+    // }
 
     // localstorage에 해당하는 값이 없을 때만 clicked를 target을 새로 추가한 상태로 변경
     // useEffect에 따라 localstorage에 알아서 담김
