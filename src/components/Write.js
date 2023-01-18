@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
-import { FormCenter,BaseInput,BaseButton,SmallButton } from '../styles/style';
+import { FormCenter,BaseInput,BaseButton,SmallButton,ModalBack } from '../styles/style';
 import {useNavigate} from 'react-router-dom'
 
 const WriteForm = styled.div`
@@ -9,6 +9,10 @@ const WriteForm = styled.div`
 const Owner = styled.h2`
   color: var(--white);
   font-size: var(--fz-big);
+  &.owner_rewrite {
+    color: var(--black);
+    text-align: center;
+  }
 `;
 const WriteTextArea = styled.textarea`
   width: 100%;
@@ -33,82 +37,41 @@ const NicknameLabel = styled.label`
 `;
 
 //ReWrite Modal
-const ModalBackDrop = styled.div`
-  width: 100%;
-  height: 100vh;
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  // 왼쪽
-  transform: translate(-50%, -50%);
-  //
-  background-color: rgba(0, 0, 0, 0.371);
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  .message {
+const ModalContent = styled.div`
+    position: absolute;
+    left: 50%; top: 50%; transform: translate(-50%,-50%);
+    // 위에 두 줄 세트로 하면 얘를 화면 가운데로 가져다 줌
     background: var(--green);
     border-radius: 15px;
     padding: 10px;
-    height: max-content;
+    width: 80%;
+    height: 40vh;
     color: white;
     display:flex;
     flex-direction: column;
    align-items: center;
    justify-content: space-around;
-   & div.message {
-    margin: 10px;
-    padding: 0px;
-    font-size: 20px;
+   @media (max-width: 768px){
+    height: 60vh;
    }
-  }
-  & div.complete {
-    width: 400px;
-    height: 300px;
-    border-radius: 10px;
+`
+
+const ContentContainer = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    text-align: center;
-    background: var(--green);
-    font-size: larger;
-    & span {
-      font-size: smaller;
-      color: white;
-      margin: 10px;
-    }
-  }
-`;
-const WriterNickname = styled.div`
-  text-align: center;
-  font-size: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+    height: 100%;
+    width: 80%;
+`
+
 const ButtonContainer = styled.div`
   display: flex;
 `;
-const ModalBtn = styled.button`
-  position: relative;
-  width: var(--ip-big-w);
-  height: var(--ip-big-h);
-  text-align: center;
-  background: var(--maincolor);
-  border-radius: var(--bd-rd-sm);
-  color: var(--white);
-  cursor: pointer;
-  transition: var(--trans);
-  &:hover {
-      box-shadow: var(--shadow);
-      transition: var(--trans);
-  };
-`;
+
 const Message = styled.div`
-  width: 400px;
-  height: 200px;
+  width: 100%;
+  height: 20vh;
   background: rgba( 255, 255, 255, 0.2 );
   padding: 10px;
   overflow: auto;
@@ -200,19 +163,21 @@ const Write = ({ userData, setUserData, dummyData, sharedId, setDummyData }) => 
   const ReWrite = ({ content, nickname, isSend, setIsSend }) => {
     return (
       <FormCenter action='' method='get' onSubmit={(e) => e.preventDefault()}>
-        <ModalBackDrop>
-          {!isSend ?
-          <div className='message'>
-            <WriterNickname><span>{`To. ${sharedUserField}`}</span></WriterNickname>
-            <Message><pre>{content}</pre></Message>
-            <div className='message'><span>From. {nickname}</span></div>
-            <ButtonContainer>
-              <SmallButton onClick={editTextarea} style={{marginRight : '10px'}} background='var(--maincolor)' hoverBg='var(--yellow)' shadow='var(--shadow)'>수정하기</SmallButton><SmallButton onClick={() => {saveData();}} background='var(--maincolor)' hoverBg='var(--yellow)' shadow='var(--shadow)'>보내기</SmallButton>
-            </ButtonContainer>
-          </div>
-           : <CheckModal setIsSend={setIsSend}/>
-           }
-        </ModalBackDrop>
+        <ModalBack>
+          <ModalContent>
+            {!isSend ?
+              <ContentContainer>
+                <Owner className='owner_rewrite'>{`To. ${sharedUserField}`}</Owner>
+                <Message><pre>{content}</pre></Message>
+                <span>From. {nickname}</span>
+                <ButtonContainer>
+                  <SmallButton onClick={editTextarea} style={{ marginRight: '10px' }} background='var(--maincolor)' hoverBg='var(--yellow)' shadow='var(--shadow)'>수정하기</SmallButton><SmallButton onClick={() => { saveData(); }} background='var(--maincolor)' hoverBg='var(--yellow)' shadow='var(--shadow)'>보내기</SmallButton>
+                </ButtonContainer>
+              </ContentContainer>
+              : <CheckModal setIsSend={setIsSend} />
+            }
+          </ModalContent>
+        </ModalBack>
       </FormCenter>
     )
   }
