@@ -58,9 +58,6 @@ const Header = ({ userInfo }) => {
     localStorage.removeItem('userInfo')
     window.location.href = '/'
   }
-  // if(window.location.href === 'http://localhost:3000/join'){
-  //   localStorage.
-  // }
   return (
     <HeaderContainer>
       <Link to="/"><MainLogo changeImg={changeImg} /></Link>
