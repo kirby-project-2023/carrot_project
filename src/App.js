@@ -40,7 +40,7 @@ function App() {
         <GlobalStyle />
         <Header userInfo={userInfo}/>
         <Routes>
-          <Route path={`/`} element={<Index />} />
+          <Route path={`/`} element={<Index userInfo={userInfo} />} />
           <Route path={`/id=${sharedId}`} element={<Index2 sharedId={sharedId} userData={userData} />} />
           <Route path="/join" element={<Join userData={userData} setUserData={setUserData} />} />
           <Route path="/login" element={<Login userData={userData} setUserInfo={setUserInfo} />} />

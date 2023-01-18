@@ -25,15 +25,6 @@ const HeaderContainer = styled.header`
   color: var(--white);
 `;
 
-const Title = styled.h1`
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: var(--fz-large);
-  word-break: keep-all;
-  text-align: center;
-`;
-
 const Button = styled.button`
   width: 80px;
   height: 80px;
@@ -52,7 +43,7 @@ const Button = styled.button`
 const Header = ({ userInfo }) => {
   const [changeImg, setChangeImg] = useState(LogoDefault);
   useEffect(() => {
-    if (userInfo.length === 0 || userInfo[0].contentLst === undefined) {
+    if (userInfo.length === 0 || userInfo[0].contentLst.length === 0) {
       setChangeImg(LogoDefault)
     }
     else if (userInfo[0].contentLst.length <= 4) {
@@ -67,19 +58,17 @@ const Header = ({ userInfo }) => {
     localStorage.removeItem('userInfo')
     window.location.href = '/'
   }
-  const mypageURL = '/mypage'
-  console.log(userInfo)
+  // if(window.location.href === 'http://localhost:3000/join'){
+  //   localStorage.
+  // }
   return (
     <HeaderContainer>
       <Link to="/"><MainLogo changeImg={changeImg} /></Link>
-      <Title>
-        {window.location.href === mypageURL ?`2023 ${userInfo[0].field} 달토끼네 당근밭` : `2023 커비의 당근심기`}
-      </Title>
       {userInfo[0] === undefined ? null :
       (<Button onClick={logoutHandler}> 
           LOGOUT<FontAwesomeIcon icon={faRightFromBracket} />
       </Button>)}
-      </HeaderContainer>
+    </HeaderContainer>
   );
 };
 
