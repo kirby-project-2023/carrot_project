@@ -17,7 +17,9 @@ const ModalBackdrop = styled.div`
 const ModalView = styled.div`
     width: 30%;
     height: 50%;
-    background-color: white;
+    padding: var(--gap-large);
+    word-break: keep-all;
+    background-color: var(--maincolor);
     display:flex;
     align-items: center;
     justify-content: center;
@@ -26,22 +28,40 @@ const ModalView = styled.div`
     overflow: hidden;
     border-radius: var(--bd-rd-big);
     > section {
-        height: 90%;
+        width: 100%;
+        height: 70%;
+        display: flex;
+        justify-content: center;
+    }
+    @media (max-width: 768px){
+        width: 80%;
+        padding: var(--gap-sm);
     }
 `;
 const Content = styled.p`
     margin: var(--gap-sm);
+    width: 90%;
+    height: 80%;
+    border-radius: var(--bd-rd-big);
+    background-color: white;
+    overflow-y: auto;
+    padding: var(--gap-big);
 `
 const NickName = styled.div`
-    margin-top: var(--gap-big);
+    font-size: var(--fz-large);
+    border-radius: var(--bd-rd-big);
+    color: white;
+    @media (max-width: 768px){
+        font-size: var(--fz-big);
+    }
 `
 
 const Letter = ({openModalHandler, dummyData, isOpen}) => { // 모달 창 열고 닫는거 인자로 받기
     const arr = dummyData.filter(e=>e.id===isOpen)
     return (
         <>
-            <ModalBackdrop>
-                <ModalView>
+            <ModalBackdrop onClick={()=>openModalHandler(0)}>
+                <ModalView onClick={(event)=> event.stopPropagation()} >
                     <NickName>
                         FROM. {arr[0].nickname}
                     </NickName>

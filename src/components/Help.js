@@ -8,7 +8,6 @@ const ModalButton = styled.button`
     position: absolute;
     right: 0px;
     bottom: 0px;
-    z-index: 100;
     width:50px;
     height: 50px;
     font-size: var(--fz-large);
