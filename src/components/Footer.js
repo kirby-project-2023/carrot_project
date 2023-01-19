@@ -16,7 +16,7 @@ const CopyRights = styled.footer`
 
 function Footer() {
   return (
-    <CopyRights><p>Copyright 2023. kirby_project all rights reserved.</p><a href='https://github.com/kirby-project-2023' target='_blank'>visit github</a></CopyRights>
+    <CopyRights><p>Copyright 2023. kirby_project all rights reserved.</p><a href='https://github.com/kirby-project-2023/carrot_project' target='_blank'>visit github</a></CopyRights>
   )
 }
 
