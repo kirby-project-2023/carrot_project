@@ -53,6 +53,7 @@ const CarrotImg = styled.img`
     @media (max-width: 540px){
     width: 50px;
     height: 50px;
+    margin: var(--gap-md);
     }
 `
 
@@ -103,6 +104,12 @@ const Mypage = ({ userInfo, dummyData }) => {
         }
     }
 
+    //편지 데이터의 개수를 12개로 자르기 위해 편지 데이터를 미리 설정
+    let carrots = userInfo[0].contentLst;
+    if(carrots.length > 12) {
+        carrots = carrots.slice(0, 12);
+    }
+
     const data = userInfo[0].contentLst.map(el => {
         return dummyData[el - 1]
     }
@@ -117,10 +124,10 @@ const Mypage = ({ userInfo, dummyData }) => {
             <MypageDiv>
                 <TitleDiv>2023 {userInfo[0].field} 달토끼네 당근밭</TitleDiv>
                 <LetterArea>
-                    {userInfo[0].contentLst.length === 0 ?
+                    {carrots.length === 0 ?
                         // 회원 가입한 유저 데이터에 contentLst 속성을 빈 배열로 초기화해둬서 분기 조건 수정했습니다. - 혜림
                         <NothingDiv>친구들에게 당근을 요청하세요!</NothingDiv>
-                        : userInfo[0].contentLst.map(el => {
+                        : carrots.map(el => {
                             return <>
                                 {/*지금은 className으로 삼항 연산자를 썼는데, 이미지로 하려면 CarrotBtn자체에서 삼항 연산자*/}
                                 {clicked.includes(el)
