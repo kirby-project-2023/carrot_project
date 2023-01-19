@@ -38,7 +38,7 @@ const ModalView = styled.div`
         padding: var(--gap-sm);
     }
 `;
-const Content = styled.p`
+const Content = styled.div`
     margin: var(--gap-sm);
     width: 90%;
     height: 80%;
@@ -46,6 +46,7 @@ const Content = styled.p`
     background-color: white;
     overflow-y: auto;
     padding: var(--gap-big);
+    > pre {width: 100%; white-space: pre-wrap; word-wrap: break-word;}
 `
 const NickName = styled.div`
     font-size: var(--fz-large);
@@ -67,7 +68,9 @@ const Letter = ({openModalHandler, dummyData, isOpen}) => { // 모달 창 열고
                     </NickName>
                     <section>
                         <Content>
-                            {arr[0].content}
+                            <pre>
+                                {arr[0].content}
+                            </pre>
                         </Content>
                     </section>
                     <SmallButton 
