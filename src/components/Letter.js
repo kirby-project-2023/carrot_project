@@ -47,6 +47,9 @@ const Content = styled.div`
     overflow-y: auto;
     padding: var(--gap-big);
     > pre {width: 100%; white-space: pre-wrap; word-wrap: break-word;}
+    @media (max-width: 768px){
+        font-size: var(--fz-md); line-height: 1.2;
+    }
 `
 const NickName = styled.div`
     font-size: var(--fz-large);

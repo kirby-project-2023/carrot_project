@@ -35,16 +35,21 @@ const Main = styled.main`
 `
 
 const Index = ({userInfo}) => {
-    if(userInfo.length !== 0){
-        window.location.href = '/mypage'
-    }
     return (
     <div className='wrap'>
     <Container>
         <Main>
             <Title>2023 커비의 당근 심기</Title>
-            <Link to="/login"><Button className='eff-fill'>로그인</Button></Link>
-            <Link to="/join"><Button className='eff-fill'>회원가입</Button></Link>
+            {
+                userInfo.length!==0
+                ?
+                <Link to="/mypage"><Button className='eff-fill'>내 당근밭 가기</Button></Link>
+                :
+                <>
+                    <Link to="/login"><Button className='eff-fill'>로그인</Button></Link>
+                    <Link to="/join"><Button className='eff-fill'>회원가입</Button></Link>
+                </>
+            }
         </Main>
     </Container>
     </div>
