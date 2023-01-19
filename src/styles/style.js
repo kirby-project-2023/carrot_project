@@ -103,15 +103,16 @@ export const ModalBack = styled.div`
 export const ModalContent = styled.div`
   position: absolute;
   left: 50%; top: 50%; transform: translate(-50%,-50%);
-  background: ${(props) => props.background || 'var(--white)'};
-  border-radius: var(--bd-rd-big);
-  width: ${(props) => props.width || '50%'};; 
-  z-index: 10;
   display: flex; justify-content: center; align-items: center;
   flex-direction: column;
-  height: ${(props) => props.height || '80%'};
+  width: ${(props) => props.width || '70%'};
+  height: ${(props) => props.height || '65vh'};
+  padding: var(--gap-big);
+  background: ${(props) => props.background || 'var(--white)'};
+  border-radius: var(--bd-rd-big);
+  z-index: 10;
   @media (max-width: 768px){
-    width: '80%';
-    height: ${(props) => props.height || '80vh'};
+    width: calc(100% - var(--gap-large));
+    padding: var(--gap-md);
   }
 `;

@@ -11,7 +11,6 @@ const MypageDiv = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    /* background-color: var(--night); */
     width: 100%;
     height: 100%;
 `;
@@ -20,10 +19,19 @@ const TitleDiv = styled.div`
     font-size: var(--fz-large);
     color: var(--white);
     margin: var(--gap-big);
+    @media (max-width: 768px){
+        font-size: var(--fz-big);
+        margin: var(--gap-sm);
+    }
 `
 
 const NothingDiv = styled.div`
     font-size: var(--fz-large);
+    text-align: center;
+    color: var(--white);
+    @media (max-width: 768px){
+        font-size: var(--fz-big);
+    }
 `
 
 const LetterArea = styled.div`

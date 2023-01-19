@@ -38,37 +38,34 @@ const NicknameLabel = styled.label`
 
 //ReWrite Modal
 const ModalContent = styled.div`
-    position: absolute;
-    left: 50%; top: 50%; transform: translate(-50%,-50%);
-    // 위에 두 줄 세트로 하면 얘를 화면 가운데로 가져다 줌
-    background: var(--green);
-    border-radius: 15px;
-    padding: 10px;
-    width: 80%;
-    height: 40vh;
-    color: white;
-    display:flex;
-    flex-direction: column;
-   align-items: center;
-   justify-content: space-around;
-   @media (max-width: 768px){
+  position: absolute;
+  left: 50%; top: 50%; transform: translate(-50%,-50%);
+  // 위에 두 줄 세트로 하면 얘를 화면 가운데로 가져다 줌
+  background: var(--green);
+  border-radius: 15px;
+  padding: 10px;
+  width: 80%;
+  height: 40vh;
+  color: white;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  @media (max-width: 768px){
     height: 60vh;
-   }
-`
-
+  }
+`;
 const ContentContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    height: 100%;
-    width: 80%;
-`
-
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  width: 80%;
+`;
 const ButtonContainer = styled.div`
   display: flex;
 `;
-
 const Message = styled.div`
   width: 100%;
   height: 20vh;
@@ -77,6 +74,7 @@ const Message = styled.div`
   overflow: auto;
   margin: 20px 0;
   text-align: center;
+  > pre {white-space: break-spaces; text-align: initial;}
 `;
 
 
@@ -152,7 +150,7 @@ const Write = ({ userData, setUserData, dummyData, sharedId, setDummyData }) => 
       }, 3000)
     }, [])
     return (
-      <div className='complete'>
+      <div className='complete' style={{textAlign:'center'}}>
       친구의 당근 밭에 당근을 심었어요 ! 🥕🐰🥕
       <br />
       <span>잠시 후 메인 페이지로 이동해요.</span>

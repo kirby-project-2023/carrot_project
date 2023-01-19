@@ -13,6 +13,9 @@ const MainLogo = styled.img.attrs(props => ({
 }))`
   width: 80px;
   height: 80px;
+  @media (max-width: 768px){
+    width: 70px; height: 70px;
+  }
 `;
 
 const HeaderContainer = styled.header`
