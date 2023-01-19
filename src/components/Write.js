@@ -147,7 +147,7 @@ const Write = ({ userData, setUserData, dummyData, sharedId, setDummyData }) => 
       setTimeout(() => {
         setIsSend(false)
         navigate('/')
-      }, 3000)
+      }, 1500)
     }, [])
     return (
       <div className='complete' style={{textAlign:'center'}}>

@@ -41,7 +41,7 @@ function App() {
         <Header userInfo={userInfo}/>
         <Routes>
           <Route path={`/`} element={<Index userInfo={userInfo} />} />
-          <Route path={`/id=${sharedId}`} element={<Index2 sharedId={sharedId} userData={userData} />} />
+          <Route path={`/id=${sharedId}`} element={<Index2 sharedId={sharedId} userData={userData} userInfo={userInfo} />} />
           <Route path="/join" element={<Join userData={userData} setUserData={setUserData} />} />
           <Route path="/login" element={<Login userData={userData} setUserInfo={setUserInfo} />} />
           <Route path="/mypage" element={<Mypage userInfo={userInfo} dummyData={dummyData} />} />

@@ -57,12 +57,12 @@ const Login = ({ userData, setUserInfo }) => {
             <LoginForm>
                 <BaseInputBox>
                     <BaseInput type="text" id='ID' value={inputId} onChange={handleInputId} required/>
-                    <BaseLabel for="ID">아이디</BaseLabel>
+                    <BaseLabel htmlFor="ID">아이디</BaseLabel>
                 </BaseInputBox>
                 {/* password 적는 input*/}
                 <BaseInputBox>
                     <BaseInput type="password" id='PASSWORD' value={inputPw} onChange={handleInputPw} required/>
-                    <BaseLabel for="">비밀번호</BaseLabel>
+                    <BaseLabel htmlFor="PASSWORD">비밀번호</BaseLabel>
                 </BaseInputBox>
                 {/*버튼 -> 로그인 / 회원가입 버튼*/}
                 <BaseButton onClick={loginBtn}>로그인</BaseButton>

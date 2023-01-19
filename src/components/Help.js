@@ -32,7 +32,7 @@ const ModalContainer = styled.div`
 `;
 
 const ModalBox = styled.div`
-    width: 100%; height: 100%; overflow-y: auto;
+    width: 100%; height: 80%; overflow-y: auto;
     > img {display: block; margin: 0 auto var(--gap-md);}
     > div {margin-bottom: var(--gap-big); text-align: center;}
     > ul li {display: flex; justify-content: flex-start; align-items: flex-start; margin-bottom: calc(var(--gap-sm)/2);}
