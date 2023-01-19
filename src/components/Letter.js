@@ -77,7 +77,7 @@ const Letter = ({openModalHandler, dummyData, isOpen}) => { // 모달 창 열고
                         </Content>
                     </section>
                     <SmallButton 
-                    onClick={()=>openModalHandler(0)}>확인</SmallButton>
+                    onClick={()=>openModalHandler(0)} hoverBg='var(--green)'>확인</SmallButton>
                 </ModalView>
             </ModalBackdrop>
         </>
