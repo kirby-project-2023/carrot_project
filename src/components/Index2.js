@@ -42,7 +42,6 @@ const Index2 = ({ sharedId, userData, userInfo }) => {
       }
       // alert('유효하지 않은 접근입니다')
       // window.location.href = 'http://localhost:3000/'
-      console.log(userData)
     }
   }, [])
   const idCheckHandler = () => {
