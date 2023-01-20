@@ -60,19 +60,24 @@ const Index2 = ({ sharedId, userData, userInfo }) => {
       <Container>
         <Main>
           {
-            userInfo.length!==0
-            ?
-            <Link to="/mypage"><Button className='eff-fill'>내 당근밭 가기</Button></Link>
-            :
             <>
-              <Link to="/login"><Button className='eff-fill'>로그인</Button></Link>
-              <Link to="/join"><Button className='eff-fill'>회원가입</Button></Link>
               {
-                idCheck ?
-                lengthOver ? 
-                <Link to="/"><Button className='eff-fill' onClick={LengthCheck}>편지쓰기</Button></Link>
-                : <Link to="/write"><Button className='eff-fill'>편지쓰기</Button></Link>
-                : <Link to="/"><Button onClick={idCheckHandler} className='eff-fill'>편지쓰기</Button></Link>
+                (userInfo.length !== 0)
+                  ? <Link to="/mypage"><Button className='eff-fill'>내 당근밭 가기</Button></Link>
+                  :
+                  <>
+                    <Link to="/login"><Button className='eff-fill'>로그인</Button></Link>
+                    <Link to="/join"><Button className='eff-fill'>회원가입</Button></Link>
+                  </>
+              }
+              {
+                idCheck
+                  ? (userInfo[0].id === sharedId) 
+                    ? null 
+                    : lengthOver 
+                      ? <Link to="/"><Button className='eff-fill' onClick={LengthCheck}>편지쓰기</Button></Link>
+                        : <Link to="/write"><Button className='eff-fill'>편지쓰기</Button></Link>
+                  : <Link to="/"><Button onClick={idCheckHandler} className='eff-fill'>편지쓰기</Button></Link>
               }
             </>
           }
