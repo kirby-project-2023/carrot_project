@@ -23,7 +23,9 @@ function App() {
   useEffect(() => {
     const url = String(window.location.href)
     if (url.includes('id')) {
-      setSharedId(decodeURI(url.slice(url.indexOf('=')+1)))
+      let localSharedId = decodeURI(url.slice(url.indexOf('=')+1))
+      localStorage.setItem("sharedId",JSON.stringify(localSharedId))
+      setSharedId(JSON.parse(localStorage.getItem("sharedId")))
     }
     // 한글 아이디 받아올 수 있도록 디코딩
     if(!localStorage.getItem("dummyData")){
