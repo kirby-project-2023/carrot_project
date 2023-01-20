@@ -33,7 +33,6 @@ const Main = styled.main`
 const Index2 = ({ sharedId, userData, userInfo }) => {
   const [idCheck, setIdCheck] = useState(false)
   const [lengthOver, setLengthOver] = useState(false)
-
   useEffect(() => {
     let receiver = userData.filter(e => e.id === sharedId)
     if (receiver.length === 1) {
@@ -53,7 +52,6 @@ const Index2 = ({ sharedId, userData, userInfo }) => {
     alert('친구의 당근 밭이 가득 찼어요.')
   }
 
-  console.log(userInfo)
 
   return (
     <div className='wrap'>

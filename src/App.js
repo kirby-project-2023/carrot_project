@@ -1,5 +1,5 @@
 import React, { useState , useEffect } from "react";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import './styles/variable.css';
 import GlobalStyle from './styles/GlobalStyle';
 import userJson from './datas/userData.json'
@@ -35,7 +35,7 @@ function App() {
   }, [])
 
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <HashRouter basename='/'>
       <div className='app-wrap'>
         <GlobalStyle />
         <Header userInfo={userInfo}/>
@@ -50,7 +50,7 @@ function App() {
         <Footer />
         <Help/>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
