@@ -16,6 +16,7 @@ const Button = styled.button`
     border: none;
     margin-top: var(--gap-md);
     cursor: pointer;
+    color: var(--black);
 `
 
 const Container = styled.div`

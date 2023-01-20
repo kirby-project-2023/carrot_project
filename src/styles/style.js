@@ -72,6 +72,7 @@ export const SmallButton = styled.button`
   height: var(--btn-sm-h);
   border-radius: var(--bd-rd-sm);
   font-size: var(--fz-md);
+  color: var(--black);
   background: ${(props) => props.background || 'var(--yellow)'};
   margin-bottom: ${(props) => props.marginBottom || 'var(--gap-sm)'};
   transition: var(--trans);
