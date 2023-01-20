@@ -7,6 +7,7 @@ import { clear } from '@testing-library/user-event/dist/clear';
 
 const ModalButton = styled.button`
     position: absolute;
+    z-index: 10;
     right: 0px;
     bottom: 0px;
     width:50px;
