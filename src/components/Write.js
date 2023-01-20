@@ -79,7 +79,6 @@ const Message = styled.div`
 
 
 const Write = ({ userData, setUserData, dummyData, sharedId, setDummyData }) => {
-  
   const [content, setContent] = useState('');
   const [nickname, setNickname] = useState('');
   const sharedUserField = userData.filter((el) => el.id === sharedId)[0].field
@@ -91,7 +90,6 @@ const Write = ({ userData, setUserData, dummyData, sharedId, setDummyData }) => 
     let contents = e.target.value
     contents = contents.replaceAll('\r\n', '<br>')
     setContent(contents)
-    console.log(contents)
   }
   // 엔터키 변경해서 받아야 함
   const newNickname = (e) => {
@@ -99,7 +97,6 @@ const Write = ({ userData, setUserData, dummyData, sharedId, setDummyData }) => 
   }
   const saveData = () => {
     setIsSend(true)
-    console.log(isSend)
     const dummyDataObj = {
       id: dummyData.length + 1,
       nickname,
@@ -127,7 +124,6 @@ const Write = ({ userData, setUserData, dummyData, sharedId, setDummyData }) => 
         dummyDataObj.id
       ]
     }
-    console.log(userDataArr[0].contentLst)
     const saveDatas = [...userData]
     saveDatas[index] = userDataObj
     localStorage.setItem('userData',JSON.stringify(saveDatas))
@@ -142,7 +138,7 @@ const Write = ({ userData, setUserData, dummyData, sharedId, setDummyData }) => 
     setIsOpen(false)
   }
 
-  const CheckModal = ({ isSend, setIsSend }) => {
+  const CheckModal = ({ setIsSend }) => {
     useEffect(() => {
       setTimeout(() => {
         setIsSend(false)

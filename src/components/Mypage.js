@@ -86,7 +86,6 @@ const Mypage = ({ userInfo, dummyData }) => {
     }, [clicked]);
 
     const openModalHandler = (el) => {
-        console.log(el)
         setIsOpen(el)
     }
     // 최종완성 때 주석 지우기!
