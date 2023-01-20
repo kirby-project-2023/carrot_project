@@ -16,9 +16,11 @@ import Help from './components/Help'
 
 function App() {
   // 여기 수정이 되어야 한다
+  let initialId = decodeURI(String(window.location.href).slice(String(window.location.href).indexOf('=')+1))
+  console.log('initialId::', initialId)
   const [userData, setUserData] = useState(JSON.parse(localStorage.getItem('userData')) || userJson)
   const [dummyData, setDummyData] = useState(JSON.parse(localStorage.getItem('dummyData')) || dummyJson)
-  const [sharedId, setSharedId] = useState(JSON.parse(localStorage.getItem('sharedId')) || '')
+  const [sharedId, setSharedId] = useState(JSON.parse(localStorage.getItem('sharedId')) || initialId)
   const [userInfo, setUserInfo] = useState(JSON.parse(localStorage.getItem('userInfo')) || [])
   useEffect(() => {
     const url = String(window.location.href)
@@ -36,6 +38,7 @@ function App() {
     }
   }, [])
 
+  console.log('sharedId:::', sharedId)
   return (
     <HashRouter basename='/'>
       <div className='app-wrap'>
