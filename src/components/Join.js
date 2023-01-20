@@ -235,7 +235,6 @@ const Join = ({ userData, setUserData }) => {
     }
 
 
-    console.log(userData)
 
     return (
         <div className='wrap'>

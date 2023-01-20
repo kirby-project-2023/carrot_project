@@ -36,9 +36,9 @@ const Index2 = ({ sharedId, userData, userInfo }) => {
 
   useEffect(() => {
     let receiver = userData.filter(e => e.id === sharedId)
-    if ( receiver.length === 1 ){
+    if (receiver.length === 1) {
       setIdCheck(true)
-      if(receiver[0].contentLst.length > 12) {
+      if (receiver[0].contentLst.length > 12) {
         setLengthOver(true)
       }
       // alert('유효하지 않은 접근입니다')
@@ -46,10 +46,10 @@ const Index2 = ({ sharedId, userData, userInfo }) => {
       console.log(userData)
     }
   }, [])
-  const idCheckHandler = () =>{
+  const idCheckHandler = () => {
     alert('유효하지 않은 접근입니다.')
   }
-  const LengthCheck=()=>{
+  const LengthCheck = () => {
     alert('친구의 당근 밭이 가득 찼어요.')
   }
 
@@ -72,11 +72,15 @@ const Index2 = ({ sharedId, userData, userInfo }) => {
               }
               {
                 idCheck
-                  ? (userInfo[0].id === sharedId) 
-                    ? null 
-                    : lengthOver 
+                  ? (userInfo.length !== 0)
+                    ? (userInfo[0].id === sharedId)
+                      ? null
+                      : (lengthOver
+                        ? <Link to="/"><Button className='eff-fill' onClick={LengthCheck}>편지쓰기</Button></Link>
+                        : <Link to="/write"><Button className='eff-fill'>편지쓰기</Button></Link>)
+                    : (lengthOver
                       ? <Link to="/"><Button className='eff-fill' onClick={LengthCheck}>편지쓰기</Button></Link>
-                        : <Link to="/write"><Button className='eff-fill'>편지쓰기</Button></Link>
+                      : <Link to="/write"><Button className='eff-fill'>편지쓰기</Button></Link>)
                   : <Link to="/"><Button onClick={idCheckHandler} className='eff-fill'>편지쓰기</Button></Link>
               }
             </>

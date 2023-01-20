@@ -132,6 +132,7 @@ const Mypage = ({ userInfo, dummyData }) => {
     const maxNum = Math.max(...max)
     const longLetter = max.indexOf(maxNum); //longletter는 가장 긴 편지의 인덱스
 
+
     return (
         <div className='wrap'>
             <MypageDiv>
@@ -144,10 +145,10 @@ const Mypage = ({ userInfo, dummyData }) => {
                             return <>
                                 {/*지금은 className으로 삼항 연산자를 썼는데, 이미지로 하려면 CarrotBtn자체에서 삼항 연산자*/}
                                 {clicked.includes(el)
-                                    ? ((longLetter + 1) === el
+                                    ? ((data[longLetter].id) === el
                                         ? <CarrotImg src={gold_carrot} alt='gold_carrot' onClick={() => { openModalHandler(el); clickColorChange(el) }} key={el} />
                                         : <CarrotImg src={carrot} alt='carrot' onClick={() => { openModalHandler(el); clickColorChange(el) }} key={el} />)
-                                    : ((longLetter + 1) === el
+                                    : ((data[longLetter].id) === el
                                         ? <CarrotImg src={gold_carrot_ground} alt='gold_carrot_ground' onClick={() => { openModalHandler(el); clickColorChange(el) }} key={el} />
                                         : <CarrotImg src={carrot_ground} alt="carrot_ground" onClick={() => { openModalHandler(el); clickColorChange(el) }} key={el} />)
                                 }
@@ -155,7 +156,7 @@ const Mypage = ({ userInfo, dummyData }) => {
                             </>
                         })}
                 </LetterArea>
-                <div className='copy_url'>
+                <div className='copy_url' style={{marginTop: "10px"}}>
                     <input value={url} ref={copyLinkRef} style={{display: 'none'}} readOnly></input>
                     <BaseButton onClick={copyURL}>당근 밭 주소 공유하기</BaseButton>
                 </div>
