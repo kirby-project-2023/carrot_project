@@ -104,13 +104,14 @@ const Mypage = ({ userInfo, dummyData }) => {
             setClicked(clicked)
         }
     }
+    // copyLink. Ref 참조해서 데이터 받아오고 클립보드로 보내주는 Clipboard API
     const copyLinkRef = useRef()
-    const url = window.location.href
+    let url = window.location.href
+    url = url.replace('mypage', `id=${userInfo[0].id}`)
     const copyURL = () => {
-        console.log(copyLinkRef)
         copyLinkRef.current.focus()
         copyLinkRef.current.select()
-
+        
         navigator.clipboard.writeText(copyLinkRef.current.value)
         .then(() => {
             alert('당근밭 주소가 복사되었어요. 친구에게 공유해주세요!')
@@ -156,7 +157,7 @@ const Mypage = ({ userInfo, dummyData }) => {
                         })}
                 </LetterArea>
                 <div className='copy_url'>
-                    <input value={url} ref={copyLinkRef} style={{ display: 'none' }}></input>
+                    <input value={url} ref={copyLinkRef} style={{display: 'none'}}></input>
                     <BaseButton onClick={copyURL}>당근 밭 주소 공유하기</BaseButton>
                 </div>
             </MypageDiv>
