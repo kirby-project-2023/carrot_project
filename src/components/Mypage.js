@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import Letter from './Letter';
 import carrot from '../img/carrot.png';
 import carrot_ground from '../img/carrot_in_ground.png';
 import gold_carrot from '../img/gold_carrot.png';
 import gold_carrot_ground from '../img/gold_carrot_ground.png';
+import { BaseButton } from '../styles/style';
 
 const MypageDiv = styled.div`
     display: flex;
@@ -103,6 +104,18 @@ const Mypage = ({ userInfo, dummyData }) => {
             setClicked(clicked)
         }
     }
+    const copyLinkRef = useRef()
+    const url = window.location.href
+    const copyURL = () => {
+        console.log(copyLinkRef)
+        copyLinkRef.current.focus()
+        copyLinkRef.current.select()
+
+        navigator.clipboard.writeText(copyLinkRef.current.value)
+        .then(() => {
+            alert('당근밭 주소가 복사되었어요. 친구에게 공유해주세요!')
+        })
+    }
 
     //편지 데이터의 개수를 12개로 자르기 위해 편지 데이터를 미리 설정
     let carrots = userInfo[0].contentLst;
@@ -142,6 +155,10 @@ const Mypage = ({ userInfo, dummyData }) => {
                             </>
                         })}
                 </LetterArea>
+                <div className='copy_url'>
+                    <input value={url} ref={copyLinkRef} style={{ display: 'none' }}></input>
+                    <BaseButton onClick={copyURL}>당근 밭 주소 공유하기</BaseButton>
+                </div>
             </MypageDiv>
         </div>
     )
