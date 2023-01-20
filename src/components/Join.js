@@ -214,7 +214,7 @@ const Join = ({ userData, setUserData }) => {
                             handleAllCheck(event.target.checked)}}
                             checked={checkItems.length === privateData.length ? true : false}
                         />
-                        <PrivateLabel for='privateCheckAll'>약관 전체 동의</PrivateLabel>
+                        <PrivateLabel htmlFor='privateCheckAll'>약관 전체 동의</PrivateLabel>
                     </PrivateBox>
                     {
                         privateData.map((data, id) => {
@@ -223,7 +223,7 @@ const Join = ({ userData, setUserData }) => {
                                 <PrivateCheck type='checkbox' id={`ip${id}`} onChange={(event) => {
                                     handleSingleCheck(event.target.checked, data.id)}}
                                     checked={checkItems.includes(data.id) ? true : false}/>
-                                <PrivateLabel for={`ip${id}`} >{data.label}</PrivateLabel>
+                                <PrivateLabel htmlFor={`ip${id}`} >{data.label}</PrivateLabel>
                                 <PrivateTextarea>{data.text}</PrivateTextarea>
                             </PrivateBox>)
                         })
@@ -242,19 +242,19 @@ const Join = ({ userData, setUserData }) => {
             <FormCenter action='' method='get' onSubmit={handleUserData}>
                 <BaseInputBox>
                     <BaseInput type='text' title='joinId' id='joinId' onChange={handleIdInput('id')} value={userInfo.id} required />
-                    <BaseLabel for='joinId'>아이디</BaseLabel>
+                    <BaseLabel htmlFor='joinId'>아이디</BaseLabel>
                 </BaseInputBox>
                 <BaseInputBox>
                     <BaseInput type='text' title='joinField' id='joinField' onChange={handleIdInput('field')} value={userInfo.field} required />
-                    <BaseLabel for='joinField'>닉네임</BaseLabel>
+                    <BaseLabel htmlFor='joinField'>닉네임</BaseLabel>
                 </BaseInputBox>
                 <BaseInputBox>
                     <BaseInput type='password' title='joinPw' id='joinPw' onChange={handleIdInput('pw')} value={userInfo.pw} required />
-                    <BaseLabel for='joinPw'>비밀번호</BaseLabel>
+                    <BaseLabel htmlFor='joinPw'>비밀번호</BaseLabel>
                 </BaseInputBox>
                 <BaseInputBox>
                     <BaseInput type='password' title='joinPwConfirm' id='joinPwConfirm' onChange={handleIdInput('pwConfirm')} value={userInfo.pwConfirm} required />
-                    <BaseLabel for='joinPwConfirm'>비밀번호 확인</BaseLabel>
+                    <BaseLabel htmlFor='joinPwConfirm'>비밀번호 확인</BaseLabel>
                 </BaseInputBox>
                 <BaseInputBox><div style={{color:'var(--white)'}}>{isIncorrect ? '비밀번호가 같지 않습니다.' : '' }</div></BaseInputBox>
                 <BaseButton type='submit' onClick={checkClick} >{checkItems.length === privateData.length ? '가입하기' : '개인정보동의'}</BaseButton>
