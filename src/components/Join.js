@@ -12,7 +12,7 @@ const PrivateBox = styled.div`
     display: flex;
     flex-direction: column;
     padding: 0 var(--gap-large);
-    margin-bottom: var(--gap-big);
+    margin-bottom: var(--gap-sm);
 `;
 const PrivateCheck = styled.input`
     position: relative;
@@ -51,7 +51,7 @@ const PrivateLabel = styled.label`
 `;
 const PrivateTextarea = styled.div`
     border: 1px solid var(--gray);
-    height: calc(var(--ip-big-h) * 2);
+    height: calc(var(--ip-big-h)*1.2);
     overflow-y: scroll;
     padding: var(--gap-sm);
     font-size: var(--fz-sm);
