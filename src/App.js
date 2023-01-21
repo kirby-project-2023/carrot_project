@@ -1,9 +1,8 @@
 import React, { useState , useEffect } from "react";
 import { HashRouter, Routes, Route } from 'react-router-dom';
+import { getCollectionData, addCollectionData } from './firebase/api'
 import './styles/variable.css';
 import GlobalStyle from './styles/GlobalStyle';
-import userJson from './datas/userData.json'
-import dummyJson from './datas/dummyData.json'
 import Header from './components/Header';
 import Index from './components/Index'
 import Index2 from './components/Index2';
@@ -18,10 +17,11 @@ function App() {
   // 여기 수정이 되어야 한다
   let initialId = decodeURI(String(window.location.href).slice(String(window.location.href).indexOf('=')+1))
   console.log('initialId::', initialId)
-  const [userData, setUserData] = useState(JSON.parse(localStorage.getItem('userData')) || userJson)
-  const [dummyData, setDummyData] = useState(JSON.parse(localStorage.getItem('dummyData')) || dummyJson)
-  const [sharedId, setSharedId] = useState(JSON.parse(localStorage.getItem('sharedId')) || initialId)
   const [userInfo, setUserInfo] = useState(JSON.parse(localStorage.getItem('userInfo')) || [])
+  const [sharedId, setSharedId] = useState(JSON.parse(localStorage.getItem('sharedId')) || initialId)
+  const [dummyData, setDummyData] = useState([])
+  const [userData, setUserData] = useState([])
+
   useEffect(() => {
     const url = String(window.location.href)
     if (url.includes('id')) {
@@ -30,12 +30,8 @@ function App() {
       setSharedId(JSON.parse(localStorage.getItem("sharedId")))
     }
     // 한글 아이디 받아올 수 있도록 디코딩
-    if(!localStorage.getItem("dummyData")){
-      localStorage.setItem("dummyData",JSON.stringify(dummyData))
-    }
-    if(!localStorage.getItem("userData")){
-      localStorage.setItem("userData",JSON.stringify(userData))
-    }
+    getCollectionData('dummyData').then(data => setDummyData(data))
+    getCollectionData('userData').then(data => setUserData(data))
   }, [])
 
   console.log('sharedId:::', sharedId)

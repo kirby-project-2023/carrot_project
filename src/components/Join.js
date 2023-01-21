@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
 import { FormCenter, BaseInputBox, BaseInput, BaseLabel, BaseButton } from '../styles/style';
 import { ModalWrap, ModalBack, ModalContent } from '../styles/style';
+import { getCollectionData, addCollectionData } from '../firebase/api'
 
 // Private Check
 const PrivateBox = styled.div`
@@ -71,6 +72,7 @@ const CloseCheckbox = styled.span`
 
 
 const Join = ({ userData, setUserData }) => {
+    console.log(userData)
     const [ userInfo, setUserInfo ] = useState({
         id: '',
         field: '',
@@ -112,19 +114,13 @@ const Join = ({ userData, setUserData }) => {
             alert('중복된 Id 이거나 비밀번호가 유효하지 않습니다.')
         } 
         else if (checkItems.length === privateData.length && !checkUserData()) {
-            // userData.push({
-            //     id,
-            //     field,
-            //     pw
-            // })
-            const updatedUserData = [...userData, {
+            addCollectionData('userData', {
                 id,
                 field,
                 pw,
                 contentLst
-            }]
-            localStorage.setItem('userData', JSON.stringify(updatedUserData))
-            setUserData(JSON.parse(localStorage.getItem('userData')))
+            })
+            getCollectionData('userData').then(data => setUserData(data))
             initState()
             navigate('/login')
         }
@@ -140,6 +136,8 @@ const Join = ({ userData, setUserData }) => {
     }
 
     const checkUserData = () => {
+        console.log(userInfo)
+        console.log(userData)
         // user가 입력한 데이터 받아서
         // 1. user ID 가 데이터에 중복 없는지
         // 2. 입력한 password === passwordconfirm과 같은지

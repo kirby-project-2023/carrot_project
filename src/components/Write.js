@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import { FormCenter,BaseInput,BaseButton,SmallButton,ModalBack } from '../styles/style';
 import {useNavigate} from 'react-router-dom'
+import { getCollectionData, addCollectionData, updateDocData } from '../firebase/api'
 
 const WriteForm = styled.div`
   width: 100%;
@@ -79,9 +80,11 @@ const Message = styled.div`
 
 
 const Write = ({ userData, setUserData, dummyData, sharedId, setDummyData }) => {
+  console.log(userData)
   const [content, setContent] = useState('');
   const [nickname, setNickname] = useState('');
-  const sharedUserField = userData.filter((el) => el.id === sharedId)[0].field
+  const sharedUser = userData.filter((el) => el.id === sharedId)
+  const sharedUserField = sharedUser.length == 0 ? '' : sharedUser[0].field
   // 당근 밭 주인의 닉네임
   const navigate = useNavigate()
   const [isSend, setIsSend] = useState(false)
@@ -106,8 +109,10 @@ const Write = ({ userData, setUserData, dummyData, sharedId, setDummyData }) => 
       ...dummyData,
       dummyDataObj
     ]
-    localStorage.setItem('dummyData', JSON.stringify(newDummyData))
-    setDummyData(JSON.parse(localStorage.getItem("dummyData")))
+
+    addCollectionData('dummyData', dummyDataObj)
+    getCollectionData('dummyData').then(data => setDummyData(data))
+
     let index = 0;
     const userDataArr = userData.filter((e,i) => {
       if(e.id === sharedId){
@@ -115,19 +120,15 @@ const Write = ({ userData, setUserData, dummyData, sharedId, setDummyData }) => 
       }
       return e.id === sharedId
     })
-    const userDataObj = {
-      id: userDataArr[0].id,
-      pw: userDataArr[0].pw,
-      field: userDataArr[0].field,
+
+    const update = {
       contentLst: !userDataArr[0].contentLst ? [dummyDataObj.id] : [
         ...userDataArr[0].contentLst,
         dummyDataObj.id
       ]
     }
-    const saveDatas = [...userData]
-    saveDatas[index] = userDataObj
-    localStorage.setItem('userData',JSON.stringify(saveDatas))
-    setUserData(JSON.parse(localStorage.getItem('userData')))
+    updateDocData('userData', userDataArr[0].docId, update)
+    getCollectionData('userData').then(data => setUserData(data))
   }
   
   const [isOpen, setIsOpen] = useState(false)

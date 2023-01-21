@@ -6,7 +6,10 @@ import carrot_ground from '../img/carrot_in_ground.png';
 import gold_carrot from '../img/gold_carrot.png';
 import gold_carrot_ground from '../img/gold_carrot_ground.png';
 import { BaseButton } from '../styles/style';
+import { getCollectionData, addCollectionData } from '../firebase/api'
+import { useNavigate } from 'react-router-dom';
 
+const navigate = useNavigate
 const MypageDiv = styled.div`
     display: flex;
     flex-direction: column;
@@ -122,10 +125,10 @@ const Mypage = ({ userInfo, dummyData }) => {
         carrots = carrots.slice(0, 12);
     }
 
-    const data = userInfo[0].contentLst.map(el => {
-        return dummyData[el - 1]
-    }
-    )
+    const data = dummyData.length != 0 
+        ? userInfo[0].contentLst.map(el => {
+            return dummyData[el - 1]
+        }) : []
 
     const max = data.map(el => el.content.length);
     const maxNum = Math.max(...max)
@@ -137,7 +140,7 @@ const Mypage = ({ userInfo, dummyData }) => {
             <MypageDiv>
                 <TitleDiv>2023 {userInfo[0].field} 달토끼네 당근밭</TitleDiv>
                 <LetterArea>
-                    {carrots.length === 0 ?
+                    {carrots.length === 0 || data.length === 0 ?
                         // 회원 가입한 유저 데이터에 contentLst 속성을 빈 배열로 초기화해둬서 분기 조건 수정했습니다. - 혜림
                         <NothingDiv>친구들에게 당근을 요청하세요!</NothingDiv>
                         : carrots.map(el => {

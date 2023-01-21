@@ -12,6 +12,7 @@ const LoginForm = styled.form`
 `;
 
 const Login = ({ userData, setUserInfo }) => {
+    console.log('test>>>', userData)
     const [inputId, setInputId] = useState('');
     const [inputPw, setInputPw] = useState('');
     // 버튼 누른 상태?

@@ -33,7 +33,9 @@ const Main = styled.main`
 const Index2 = ({ sharedId, userData, userInfo }) => {
   const [idCheck, setIdCheck] = useState(false)
   const [lengthOver, setLengthOver] = useState(false)
+
   useEffect(() => {
+    console.log(userData)
     let receiver = userData.filter(e => e.id === sharedId)
     if (receiver.length === 1) {
       setIdCheck(true)
@@ -43,14 +45,14 @@ const Index2 = ({ sharedId, userData, userInfo }) => {
       // alert('유효하지 않은 접근입니다')
       // window.location.href = 'http://localhost:3000/'
     }
-  }, [])
+  })
+
   const idCheckHandler = () => {
     alert('유효하지 않은 접근입니다.')
   }
   const LengthCheck = () => {
     alert('친구의 당근 밭이 가득 찼어요.')
   }
-
 
   return (
     <div className='wrap'>
