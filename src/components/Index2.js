@@ -35,7 +35,6 @@ const Index2 = ({ sharedId, userData, userInfo }) => {
   const [lengthOver, setLengthOver] = useState(false)
 
   useEffect(() => {
-    console.log(userData)
     let receiver = userData.filter(e => e.id === sharedId)
     if (receiver.length === 1) {
       setIdCheck(true)

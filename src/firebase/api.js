@@ -9,7 +9,6 @@ const getCollectionData = (collectionName) => {
                 obj.docId = data.id;
                 result.push(obj);
             });
-            console.log(result)
             return result;
         })
 }

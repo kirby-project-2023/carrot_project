@@ -16,7 +16,6 @@ import Help from './components/Help'
 function App() {
   // 여기 수정이 되어야 한다
   let initialId = decodeURI(String(window.location.href).slice(String(window.location.href).indexOf('=')+1))
-  console.log('initialId::', initialId)
   const [userInfo, setUserInfo] = useState(JSON.parse(localStorage.getItem('userInfo')) || [])
   const [sharedId, setSharedId] = useState(JSON.parse(localStorage.getItem('sharedId')) || initialId)
   const [dummyData, setDummyData] = useState([])
@@ -34,7 +33,6 @@ function App() {
     getCollectionData('userData').then(data => setUserData(data))
   }, [])
 
-  console.log('sharedId:::', sharedId)
   return (
     <HashRouter basename='/'>
       <div className='app-wrap'>

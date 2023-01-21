@@ -80,7 +80,6 @@ const Message = styled.div`
 
 
 const Write = ({ userData, setUserData, dummyData, sharedId, setDummyData }) => {
-  console.log(userData)
   const [content, setContent] = useState('');
   const [nickname, setNickname] = useState('');
   const sharedUser = userData.filter((el) => el.id === sharedId)

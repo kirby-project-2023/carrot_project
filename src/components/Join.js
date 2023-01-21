@@ -72,7 +72,6 @@ const CloseCheckbox = styled.span`
 
 
 const Join = ({ userData, setUserData }) => {
-    console.log(userData)
     const [ userInfo, setUserInfo ] = useState({
         id: '',
         field: '',
@@ -136,8 +135,6 @@ const Join = ({ userData, setUserData }) => {
     }
 
     const checkUserData = () => {
-        console.log(userInfo)
-        console.log(userData)
         // user가 입력한 데이터 받아서
         // 1. user ID 가 데이터에 중복 없는지
         // 2. 입력한 password === passwordconfirm과 같은지

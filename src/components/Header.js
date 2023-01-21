@@ -59,7 +59,7 @@ const Header = ({ userInfo }) => {
   }, [userInfo])
   const logoutHandler = () =>{
     localStorage.removeItem('userInfo')
-    window.location.href = 'https://kirby-project-2023.github.io/carrot_project/'
+    window.location.href = 'https://kirbyproject-carrot.web.app'
   }
   return (
     <HeaderContainer>
