@@ -9,7 +9,7 @@
 
 <br/><br/>
 ## 🎁 서비스 소개
-[🥕커비의 당근밭 바로가기🐰](https://kirby-project-2023.github.io/carrot_project/)
+[🥕커비의 당근밭 바로가기🐰](https://kirbyproject-carrot.web.app/)
 ### 2023년이 검은 토끼의 해인 것을 알고 계신가요? 
 토끼🐰가 좋아하는 당근 밭을 일구고, 소중한 친구에게 응원의 메세지를 보내주세요.
 <br/> 나만의 당근 밭을 만들어 친구에게 당근을 받아 보세요!
