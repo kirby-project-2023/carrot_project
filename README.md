@@ -15,10 +15,10 @@
 <br/> 나만의 당근 밭을 만들어 친구에게 당근을 받아 보세요!
 
 [화면정의서](https://www.figma.com/file/JjkUZdKiY71hoYA1RPogaD/Figma_kirby_project_01?node-id=0%3A1&t=FmnMlIwbg1fvb9IP-1)
-
+<br/>
 [유저플로우](https://www.figma.com/file/gmPDPMdx2sAMKPzX88ofMx/FigJam_kirby_project_01?node-id=0%3A1&t=rLWvtYdNuP5vsDz2-1)
-
-[블로그](https://www.notion.so/yeojin15/75dc5812847f42188d13ed12a93834ab?pvs=4)
+<br/>
+[개발 기록](https://www.notion.so/yeojin15/75dc5812847f42188d13ed12a93834ab?pvs=4)
 
 
 
