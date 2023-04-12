@@ -74,23 +74,12 @@
 
 <br/><br/>
 ## 🥕 서비스 시연
-|기능|설명|
-|------|---|
-|Feat|새로운 기능 추가|
-|Fix|버그 수정|
-|Revise|오타, 코드 수정|
-|Docs|문서 작성 및 수정|
-|Style|웹 스타일링|
-|Refactor|코드 리팩토링|
-|Chore|빌드 업무 수정, 패키지 매니저 수정|
-<img width="30%" src="https://user-images.githubusercontent.com/115970101/231360530-a35e3fac-bba5-43cd-95f7-e581aced53d5.png"/>
-<img width="30%" src="https://user-images.githubusercontent.com/115970101/231361142-195d60d5-5acf-4c51-9df4-d832911f27ab.png"/>
-<img width="30%" src="https://user-images.githubusercontent.com/115970101/231361208-8cb97683-d3a6-42a4-85d5-329918ace3c1.png"/>
-<img width="30%" src="https://user-images.githubusercontent.com/115970101/231361214-acd36b3f-d6c1-469c-b84e-c4a2148e730d.png"/>
-<img width="30%" src="https://user-images.githubusercontent.com/115970101/231361224-f390fe0a-5c49-4903-9ac1-a35f23ed0b8c.png"/>
-<img width="30%" src="https://user-images.githubusercontent.com/115970101/231361241-caa55ecc-d4d7-4696-b569-7d5cc836482a.png"/>
-<img width="30%" src="https://user-images.githubusercontent.com/115970101/231361243-dc3d5b07-03ba-4668-a612-bab5756ad217.png"/>
-<img width="30%" src="https://user-images.githubusercontent.com/115970101/231361248-6dac31ad-c5b5-46ce-a032-b607543a0462.png"/>
-<img width="30%" src="https://user-images.githubusercontent.com/115970101/231361261-1a15bed9-6223-42ca-b6e0-ba0c90ee71dc.png"/>
-<img width="30%" src="https://user-images.githubusercontent.com/115970101/231362062-4689e7b6-a460-40f7-a919-c0cabeeaff00.png"/>
-<img width="30%" src="https://user-images.githubusercontent.com/115970101/231361263-6ee46995-662d-4bb6-b827-7fa9348a854b.png"/>
+|**랜딩 페이지**|**회원가입**|**이용 약관 동의**|
+|:---:|:---:|:---:|
+|<img width="360px" src="https://user-images.githubusercontent.com/115970101/231360530-a35e3fac-bba5-43cd-95f7-e581aced53d5.png"/>|<img width="360px" src="https://user-images.githubusercontent.com/115970101/231361142-195d60d5-5acf-4c51-9df4-d832911f27ab.png"/>|<img width="360px" src="https://user-images.githubusercontent.com/115970101/231361208-8cb97683-d3a6-42a4-85d5-329918ace3c1.png"/>|
+|**로그인**|**빈 당근밭**|**편지 쓰기**|
+|<img width="360px" src="https://user-images.githubusercontent.com/115970101/231361214-acd36b3f-d6c1-469c-b84e-c4a2148e730d.png"/>|<img width="360px" src="https://user-images.githubusercontent.com/115970101/231361224-f390fe0a-5c49-4903-9ac1-a35f23ed0b8c.png"/>|<img width="360px" src="https://user-images.githubusercontent.com/115970101/231361241-caa55ecc-d4d7-4696-b569-7d5cc836482a.png"/>|
+|**편지 수정 및 보내기**|**읽지 않은 편지**|**가장 내용이 긴 편지**|
+|<img width="360px" src="https://user-images.githubusercontent.com/115970101/231361243-dc3d5b07-03ba-4668-a612-bab5756ad217.png"/>|<img width="360px" src="https://user-images.githubusercontent.com/115970101/231361248-6dac31ad-c5b5-46ce-a032-b607543a0462.png"/>|<img width="360px" src="https://user-images.githubusercontent.com/115970101/231361261-1a15bed9-6223-42ca-b6e0-ba0c90ee71dc.png"/>|
+|**편지 읽기**|**읽은 편지**||
+|<img width="360px" src="https://user-images.githubusercontent.com/115970101/231362062-4689e7b6-a460-40f7-a919-c0cabeeaff00.png"/>|<img width="360px" src="https://user-images.githubusercontent.com/115970101/231361263-6ee46995-662d-4bb6-b827-7fa9348a854b.png"/>||
